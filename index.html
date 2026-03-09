@@ -8,100 +8,100 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@400;500;600&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;font-family:'DM Sans',sans-serif;background:#060c12;color:#dde6ef;overflow:hidden}
-
-.hdr{background:linear-gradient(160deg,#071020,#050e15 60%,#071a0e);border-bottom:1px solid rgba(255,255,255,.07);padding:1.25rem 2rem;position:relative;overflow:hidden;flex-shrink:0}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:#060c12;color:#dde6ef;overflow:hidden;display:flex;flex-direction:column}
+.hdr{background:linear-gradient(160deg,#071020,#050e15 60%,#071a0e);border-bottom:1px solid rgba(255,255,255,.07);padding:1rem 2rem;position:relative;overflow:hidden;flex-shrink:0}
 .hdr-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:300px;background:radial-gradient(ellipse,rgba(0,196,113,.1),transparent 65%);pointer-events:none}
-.hdr-inner{max-width:100%;position:relative;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
-.hdr-left h1{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:900;letter-spacing:-.02em;line-height:1.1}
+.hdr-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.hdr-left h1{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;letter-spacing:-.02em;line-height:1.1}
 .hdr-left h1 em{font-style:normal;background:linear-gradient(120deg,#00c471,#00c8e0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hdr-left p{font-size:.75rem;color:#5a7085;margin-top:.2rem}
-.stats{display:flex;gap:.5rem;flex-wrap:wrap}
-.sp{display:flex;flex-direction:column;align-items:center;background:#0f1d2c;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:.45rem .85rem;min-width:60px}
-.sp-n{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:900;color:#00c471;line-height:1}
-.sp-l{font-size:.58rem;color:#4a6480;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;margin-top:.15rem}
-
-.legend-bar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.05);padding:.5rem 2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;flex-shrink:0}
-.legend-bar span.lbl{font-size:.65rem;font-weight:700;color:#3d5570;text-transform:uppercase;letter-spacing:.07em}
-.li{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:#6a8aa5;white-space:nowrap}
-.ld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-
-.toolbar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.05);padding:.5rem 1.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;flex-shrink:0}
-.btn{display:inline-flex;align-items:center;gap:.35rem;padding:.38rem .8rem;border-radius:7px;border:1px solid rgba(255,255,255,.1);background:#0f1d2c;color:#8aa3b8;font-size:.76rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;user-select:none}
+.hdr-left p{font-size:.72rem;color:#5a7085;margin-top:.15rem}
+.stats{display:flex;gap:.4rem;flex-wrap:wrap}
+.sp{display:flex;flex-direction:column;align-items:center;background:#0f1d2c;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:.4rem .75rem;min-width:56px}
+.sp-n{font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:#00c471;line-height:1}
+.sp-l{font-size:.56rem;color:#4a6480;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;margin-top:.1rem}
+.tabs-bar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.07);padding:0 1.5rem;display:flex;align-items:flex-end;gap:0;flex-shrink:0;overflow-x:auto}
+.tabs-bar::-webkit-scrollbar{height:3px}
+.tabs-bar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+.tab{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.1rem;font-size:.76rem;font-weight:600;font-family:'DM Sans',sans-serif;color:#4a6480;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;user-select:none;flex-shrink:0}
+.tab:hover{color:#8aa3b8}
+.tab.active{color:#dde6ef;border-bottom-color:#00c471}
+.tab .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.legend-bar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.05);padding:.4rem 2rem;display:flex;gap:.85rem;align-items:center;flex-wrap:wrap;flex-shrink:0}
+.legend-bar span.lbl{font-size:.63rem;font-weight:700;color:#3d5570;text-transform:uppercase;letter-spacing:.07em}
+.li{display:flex;align-items:center;gap:.3rem;font-size:.7rem;color:#6a8aa5;white-space:nowrap}
+.ld{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.toolbar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.05);padding:.45rem 1.5rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.34rem .75rem;border-radius:7px;border:1px solid rgba(255,255,255,.1);background:#0f1d2c;color:#8aa3b8;font-size:.74rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;user-select:none}
 .btn:hover{background:#1a2d42;color:#dde6ef;border-color:rgba(255,255,255,.2)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
 .btn.green{border-color:rgba(0,196,113,.3);color:#00c471;background:rgba(0,196,113,.08)}
-.btn.green:hover:not(:disabled){background:rgba(0,196,113,.16)}
+.btn.green:hover{background:rgba(0,196,113,.16)}
 .btn.blue{border-color:rgba(59,142,255,.3);color:#3b8eff;background:rgba(59,142,255,.08)}
-.btn.blue:hover:not(:disabled){background:rgba(59,142,255,.16)}
+.btn.blue:hover{background:rgba(59,142,255,.16)}
 .btn.purple{border-color:rgba(155,109,255,.3);color:#9b6dff;background:rgba(155,109,255,.08)}
-.btn.purple:hover:not(:disabled){background:rgba(155,109,255,.16)}
+.btn.purple:hover{background:rgba(155,109,255,.16)}
 .btn.red{border-color:rgba(240,64,96,.3);color:#f04060;background:rgba(240,64,96,.08)}
-.btn.red:hover:not(:disabled){background:rgba(240,64,96,.16)}
-.sep{width:1px;height:20px;background:rgba(255,255,255,.08);flex-shrink:0;margin:0 .15rem}
-.zoom-lbl{font-size:.72rem;color:#3d5570;min-width:42px;text-align:center;font-family:'Syne',sans-serif;font-weight:700}
-
+.btn.red:hover{background:rgba(240,64,96,.16)}
+.sep{width:1px;height:18px;background:rgba(255,255,255,.08);flex-shrink:0;margin:0 .1rem}
+.zoom-lbl{font-size:.72rem;color:#3d5570;min-width:40px;text-align:center;font-family:'Syne',sans-serif;font-weight:700}
 #canvasWrap{flex:1;overflow:hidden;position:relative;background:#060c12}
-#mainCanvas{width:100%;height:100%;overflow:auto;cursor:grab;user-select:none}
-#mainCanvas:active{cursor:grabbing}
-#mainCanvas::-webkit-scrollbar{width:6px;height:6px}
-#mainCanvas::-webkit-scrollbar-track{background:transparent}
-#mainCanvas::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
-#canvasInner{display:inline-block;padding:40px;transform-origin:0 0}
-#mainDiagram svg{display:block;max-width:none !important}
-
-/* FULLSCREEN OVERLAY */
+.diagram-panel{display:none;width:100%;height:100%;overflow:auto;cursor:grab;user-select:none;position:absolute;inset:0}
+.diagram-panel.active{display:block}
+.diagram-panel:active{cursor:grabbing}
+.diagram-panel::-webkit-scrollbar{width:6px;height:6px}
+.diagram-panel::-webkit-scrollbar-track{background:transparent}
+.diagram-panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
+.panel-inner{display:inline-block;padding:40px;transform-origin:0 0}
+.panel-inner svg{display:block;max-width:none !important}
+#loadingMsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:#060c12;z-index:50}
+.spinner{width:40px;height:40px;border:3px solid rgba(0,196,113,.2);border-top-color:#00c471;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loadingMsg p{color:#5a7085;font-size:.85rem}
+.progress-mini{width:180px;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.progress-mini-bar{height:100%;background:linear-gradient(90deg,#00c471,#00c8e0);width:0;transition:width .4s}
 #fsOverlay{display:none;position:fixed;inset:0;z-index:9999;background:#060c12;flex-direction:column}
 #fsOverlay.open{display:flex}
 #fsToolbar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.07);padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;flex-shrink:0}
 #fsTitle{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#5a7085}
-#fsCanvas{flex:1;overflow:auto;cursor:grab;user-select:none;padding:40px;position:relative}
+#fsCanvas{flex:1;overflow:auto;cursor:grab;user-select:none;padding:40px}
 #fsCanvas:active{cursor:grabbing}
 #fsCanvas::-webkit-scrollbar{width:6px;height:6px}
-#fsCanvas::-webkit-scrollbar-track{background:transparent}
 #fsCanvas::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
-/* FIX: Use a wrapper div that transforms, not the SVG itself */
 #fsInner{display:inline-block;transform-origin:top left}
-
-/* LOADING */
-#loadingMsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:#060c12;z-index:10}
-.spinner{width:40px;height:40px;border:3px solid rgba(0,196,113,.2);border-top-color:#00c471;border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-#loadingMsg p{color:#5a7085;font-size:.85rem}
-
-/* TOAST */
 #toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(60px);background:#0f1d2c;border:1px solid rgba(0,196,113,.3);color:#00c471;padding:.55rem 1.25rem;border-radius:999px;font-size:.8rem;font-weight:600;opacity:0;transition:all .3s;z-index:99999;white-space:nowrap;pointer-events:none}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* PROGRESS BAR for download */
 #progressBar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00c471,#00c8e0);width:0;transition:width .3s;z-index:99999;pointer-events:none}
-
-body{display:flex;flex-direction:column}
 </style>
 </head>
 <body>
-
 <div id="progressBar"></div>
 
-<!-- HEADER -->
 <header class="hdr">
   <div class="hdr-glow"></div>
   <div class="hdr-inner">
     <div class="hdr-left">
-      <h1>Ayungon <em>HRMS</em> — Unified System Flowchart</h1>
-      <p>Municipality of Ayungon, Negros Oriental &nbsp;·&nbsp; All modules in one connected diagram</p>
+      <h1>Ayungon <em>HRMS</em> — System Flowcharts</h1>
+      <p>Municipality of Ayungon, Negros Oriental &nbsp;·&nbsp; All modules · All roles · 7 diagrams</p>
     </div>
     <div class="stats">
       <div class="sp"><div class="sp-n">5</div><div class="sp-l">Roles</div></div>
       <div class="sp"><div class="sp-n">9</div><div class="sp-l">Modules</div></div>
       <div class="sp"><div class="sp-n">4</div><div class="sp-l">Steps</div></div>
       <div class="sp"><div class="sp-n">15</div><div class="sp-l">Leave Types</div></div>
-      <div class="sp"><div class="sp-n">12</div><div class="sp-l">Doc Types</div></div>
+      <div class="sp"><div class="sp-n">7</div><div class="sp-l">Diagrams</div></div>
     </div>
   </div>
 </header>
 
-<!-- LEGEND -->
+<div class="tabs-bar" id="tabsBar">
+  <div class="tab active" onclick="switchTab('all')"   data-tab="all">  <div class="dot" style="background:#00c8e0"></div>All Modules</div>
+  <div class="tab"        onclick="switchTab('auth')"  data-tab="auth"> <div class="dot" style="background:#00c471"></div>Landing &amp; Auth</div>
+  <div class="tab"        onclick="switchTab('admin')" data-tab="admin"><div class="dot" style="background:#f0a500"></div>Admin</div>
+  <div class="tab"        onclick="switchTab('emp')"   data-tab="emp">  <div class="dot" style="background:#00c471"></div>Employee</div>
+  <div class="tab"        onclick="switchTab('dh')"    data-tab="dh">   <div class="dot" style="background:#3b8eff"></div>Dept Head</div>
+  <div class="tab"        onclick="switchTab('hrmo')"  data-tab="hrmo"> <div class="dot" style="background:#9b6dff"></div>HRMO</div>
+  <div class="tab"        onclick="switchTab('mayor')" data-tab="mayor"><div class="dot" style="background:#f0a500"></div>Mayor</div>
+</div>
+
 <div class="legend-bar">
   <span class="lbl">Legend</span>
   <div class="li"><div class="ld" style="background:#00c471"></div>Start / Approved</div>
@@ -110,10 +110,8 @@ body{display:flex;flex-direction:column}
   <div class="li"><div class="ld" style="background:#f0a500"></div>Step 3&amp;4 Admin/Mayor</div>
   <div class="li"><div class="ld" style="background:#f04060"></div>Rejected</div>
   <div class="li"><div class="ld" style="background:#ff5fa0"></div>PDS / Documents</div>
-  <div class="li"><div class="ld" style="background:#fbbf24"></div>Decision ◇</div>
 </div>
 
-<!-- TOOLBAR -->
 <div class="toolbar">
   <button class="btn" onclick="doFitView()">⊞ Fit View</button>
   <button class="btn" onclick="doZoom(1.25)">＋ Zoom In</button>
@@ -121,37 +119,35 @@ body{display:flex;flex-direction:column}
   <button class="btn" onclick="doReset()">↺ Reset</button>
   <span class="zoom-lbl" id="zoomLabel">100%</span>
   <div class="sep"></div>
-  <button class="btn blue" onclick="openFullscreen()">⛶ Fullscreen</button>
-  <button class="btn green" id="btnJPG" onclick="doDownloadJPG()">⬇ Download JPG</button>
-  <button class="btn purple" id="btnSVG" onclick="doDownloadSVG()">⬇ Download SVG</button>
+  <button class="btn blue"   onclick="openFullscreen()">⛶ Fullscreen</button>
+  <button class="btn green"  onclick="doDownloadJPG()">⬇ Download JPG</button>
+  <button class="btn purple" onclick="doDownloadSVG()">⬇ Download SVG</button>
 </div>
 
-<!-- CANVAS -->
 <div id="canvasWrap">
   <div id="loadingMsg">
     <div class="spinner"></div>
-    <p>Rendering diagram, please wait…</p>
+    <p>Rendering all diagrams…</p>
+    <div class="progress-mini"><div class="progress-mini-bar" id="loadBar"></div></div>
   </div>
-  <div id="mainCanvas">
-    <div id="canvasInner">
-      <div id="mainDiagram" class="mermaid">
-flowchart TD
 
+  <!-- ══════ ALL MODULES ══════ -->
+  <div class="diagram-panel active" id="panel-all">
+    <div class="panel-inner" id="inner-all">
+      <div id="diag-all" class="mermaid">
+flowchart TD
 VISIT([🏛️ User Visits Ayungon HRMS]) --> LANDING[Landing Page\nBante Ayungon]
 LANDING --> HAS_ACC{Has Account?}
-
 HAS_ACC -->|No| SIGNUP[Sign Up\nEmail · Password · Name]
 SIGNUP --> EMAIL_VER{Email Verified?}
 EMAIL_VER -->|No| SEND_VER[Send Verification Email]
 SEND_VER --> EMAIL_VER
 EMAIL_VER -->|Yes| CHK_PROF
-
 HAS_ACC -->|Yes| LOGIN[Sign In\nEmail + Password]
 LOGIN --> CREDS{Valid Credentials?}
 CREDS -->|No| LOGIN_ERR[❌ Show Error]
 LOGIN_ERR --> LOGIN
 CREDS -->|Yes| CHK_PROF
-
 CHK_PROF{Profile Complete?}
 CHK_PROF -->|No| STEP1[STEP 1 — Personal Info\nEmployee ID · Name · Contact\nDOB · Gender · Marital Status · Address]
 STEP1 --> STEP2[STEP 2 — Employment Details\nPosition · Department\nSalary Grade · Type · Hire Date]
@@ -162,10 +158,8 @@ DOC_CHOICE -->|Upload| DOC_DONE[Documents Submitted]
 DOC_SKIP --> ROLE_CHK
 DOC_DONE --> ROLE_CHK
 CHK_PROF -->|Yes| ROLE_CHK
-
 ROLE_CHK{🔀 User Role?}
-
-ROLE_CHK -->|Admin| ADMIN_DASH[👑 ADMIN DASHBOARD\nEmployees: 11 · Depts: 6\nPending: 1 · Charts & Analytics]
+ROLE_CHK -->|Admin| ADMIN_DASH[👑 ADMIN DASHBOARD\nEmployees: 11 · Depts: 6\nPending: 1 · Charts &amp; Analytics]
 ADMIN_DASH --> ADMIN_NAV{Admin Navigation}
 ADMIN_NAV -->|Employee Mgmt| EMP_MGMT[Employee Management\nSearch · Filter · View 4-Tab Modal\nStatus: Active · Inactive · On Leave\nRetired · Resigned · Terminated]
 ADMIN_NAV -->|Departments| DEPTS[Department Cards\nAccounting · Agriculture · DEPED\nGSO · KALAHI · Treasury\nView Members · Edit · Update Status]
@@ -182,7 +176,6 @@ ATT_PARSE --> ATT_SAVE[Save to DB · Update Stats]
 ADMIN_ATT --> ATT_VIEW[View Records · Filter · Daily Calendar\n3-dot: View Detail · Export DTR · All Months]
 ADMIN_NAV -->|User Mgmt| USER_MGMT[User Management\n12 Users · 3 Dept Heads · 1 HRMO · 1 Mayor\nCreate · Edit Role · Search · Filter]
 ADMIN_NAV -->|Audit Log| AUDIT[Security Audit Log — Defaults to Today\nLogins · Failed · Blocked IPs\nFilter by Date · Action · User · IP]
-
 ROLE_CHK -->|Employee| EMP_DASH[👤 EMPLOYEE DASHBOARD\nProfile Snapshot · Leave Credits 2026\nLeave Form Card · PDS Card]
 EMP_DASH --> EMP_NAV{Employee Navigation}
 EMP_NAV -->|My Profile| EMP_PROFILE[My Profile — 3 Tabs\nPersonal · Employment · Documents\nDownload or Re-upload Files]
@@ -192,7 +185,7 @@ EMP_LEAVE_MENU -->|Pending| MENU_PEND[✏️ Edit Request · 👁️ View PDF]
 EMP_LEAVE_MENU -->|In Progress| MENU_PROG[👁️ View PDF only]
 EMP_LEAVE_MENU -->|Mayor Approved| MENU_APPR[👁️ View · ⬇️ Download · 🖨️ Print]
 EMP_LEAVE_PAGE --> NEW_LEAVE[New Leave Request Form\nAuto-fill: Name · Supervisor · Dept · Position]
-NEW_LEAVE --> SEL_TYPE[Select Leave Type\n15 Types with CSC Rules & Credit Info]
+NEW_LEAVE --> SEL_TYPE[Select Leave Type\n15 Types with CSC Rules &amp; Credit Info]
 SEL_TYPE --> LEAVE_TYPES[Vacation · Mandatory · Sick\nMaternity · Paternity · Special Privilege\nSolo Parent · Study · VAWC\nRehabilitation · Special Women\nEmergency · Adoption · Monetization · Terminal]
 LEAVE_TYPES --> ENT_PERIOD[Enter Period:\nStart Date · End Date · Days · Optional Time\nCheck Available Balance Live]
 ENT_PERIOD --> CREDIT_CHK{Sufficient Credits?}
@@ -203,14 +196,13 @@ EMP_NAV -->|Calendar| EMP_CAL[Monthly Calendar\nTasks · Reminders · Holidays �
 EMP_NAV -->|Attendance| EMP_ATT[My Attendance\nIdentity Card + Stats + Charts]
 EMP_ATT --> ATT_CHARTS[Weekly Pattern Line\nMonth Summary Donut · Calendar View]
 ATT_CHARTS --> DTR_DL[Download DTR Modal\nSingle Month XLSX or Full Year 12-Sheet XLSX]
-
 EMP_NAV -->|PDS| PDS_PAGE[📄 Personal Data Sheet\nCS Form No. 212]
 PDS_PAGE --> PDS_EXISTS{PDS Exists?}
 PDS_EXISTS -->|No| PDS_NEW[Create New PDS]
 PDS_EXISTS -->|Yes| PDS_VIEW[View Existing PDS]
-PDS_NEW --> PDS_P1[PAGE 1 — Personal & Family\nFull Name · DOB · Sex · Civil Status\nGSIS · PAG-IBIG · PhilHealth · SSS · TIN\nAddress · Spouse · Parents · Children]
-PDS_P1 --> PDS_P2[PAGE 2 — Education & Eligibility\nElementary · Secondary · Vocational\nCollege · Graduate Studies\nCivil Service · RA 1080 · License]
-PDS_P2 --> PDS_P3[PAGE 3 — Work Experience & Training\nDate From-To · Position · Agency\nSalary · Grade · Appointment\nTraining Title · Hours · Type]
+PDS_NEW --> PDS_P1[PAGE 1 — Personal &amp; Family\nFull Name · DOB · Sex · Civil Status\nGSIS · PAG-IBIG · PhilHealth · SSS · TIN\nAddress · Spouse · Parents · Children]
+PDS_P1 --> PDS_P2[PAGE 2 — Education &amp; Eligibility\nElementary · Secondary · Vocational\nCollege · Graduate Studies\nCivil Service · RA 1080 · License]
+PDS_P2 --> PDS_P3[PAGE 3 — Work Experience &amp; Training\nDate From-To · Position · Agency\nSalary · Grade · Appointment\nTraining Title · Hours · Type]
 PDS_P3 --> PDS_P4[PAGE 4 — Declarations\nSkills · Distinctions · Memberships\nDeclarations 1-10: Criminal · Admin\nImmigrant · PWD · Solo Parent\n3 Character References · Oath + Signature]
 PDS_P4 --> PDS_SUBMIT[Submit PDS · Generate PDF Preview\nMark Complete · Notify HR Office]
 PDS_VIEW --> PDS_ACTIONS{PDS Action?}
@@ -218,18 +210,14 @@ PDS_ACTIONS -->|Edit| PDS_EDIT[Edit Any Page 1-4]
 PDS_ACTIONS -->|Preview| PDS_PREVIEW[Full Screen Preview + Zoom]
 PDS_ACTIONS -->|Download| PDS_DL[CS_Form_212_Name_Date.pdf]
 PDS_ACTIONS -->|Print| PDS_PRINT[Legal 8.5x13 · Margins: None · Scale: 100%]
-
 ROLE_CHK -->|Dept Head| DH_DASH[🏢 DEPT HEAD DASHBOARD\nAll Employee Features + Leave Approval Queue]
 DH_DASH --> DH_NAV{Dept Head Navigation}
 DH_NAV -->|Leave Approval Queue| DH_QUEUE[Leave Approval Queue\nStep 1: Recommendation\nFilter: Own Dept · Pending Only]
-DH_NAV -->|Own Leave/Profile/PDS/Attendance| DH_EMP_FEAT[Same as Employee Features]
-
+DH_NAV -->|Own Leave or Profile or PDS or Attendance| DH_EMP_FEAT[Same as Employee Features]
 ROLE_CHK -->|HRMO| HRMO_DASH[🏥 HRMO DASHBOARD\nLeave Approval — Step 2 Review]
-HRMO_DASH --> HRMO_QUEUE[Leave Approval Queue\nStep 2: Review & Approve\nFilter: Dept Head Approved only\nView PDF · Approve · Reject · Return to Dept]
-
+HRMO_DASH --> HRMO_QUEUE[Leave Approval Queue\nStep 2: Review &amp; Approve\nFilter: Dept Head Approved only\nView PDF · Approve · Reject · Return to Dept]
 ROLE_CHK -->|Mayor| MAYOR_DASH[👔 MAYOR DASHBOARD\nLeave Approval — Final Authority]
 MAYOR_DASH --> MAYOR_QUEUE[Leave Approval Queue\nStep 4: Final Approval\nFilter: Admin Approved only\nView Full Trail · Final Approve · Reject · Return to Admin]
-
 SUBMIT_LEAVE --> CTRL_NUM[Generate Control Number\ne.g. LV-2026-0009\nSave to Database · Notify Dept Head]
 CTRL_NUM --> STEP_1[━━━ STEP 1 ━━━\n🏢 DEPT HEAD REVIEW]
 DH_QUEUE --> STEP_1
@@ -243,7 +231,6 @@ DH_DEC -->|Request Info| DH_INFO[Request More Info From Employee]
 DH_INFO --> DH_WAIT{Employee Responds?}
 DH_WAIT -->|Yes| STEP_1
 DH_WAIT -->|7-Day Timeout| END_1
-
 S1_STATUS --> STEP_2[━━━ STEP 2 ━━━\n🏥 HRMO REVIEW]
 HRMO_QUEUE --> STEP_2
 STEP_2 --> HRMO_CHECK[Check: Balance · Dept Head Notes\nDocs · Leave Rules Compliance]
@@ -258,7 +245,6 @@ HRMO_DEC -->|Request Info| HRMO_INFO[Request Info From Employee]
 HRMO_INFO --> HRMO_WAIT{Employee Responds?}
 HRMO_WAIT -->|Yes| STEP_2
 HRMO_WAIT -->|7-Day Timeout| END_2
-
 S2_STATUS --> STEP_3[━━━ STEP 3 ━━━\n🔑 ADMIN APPROVAL]
 ADMIN_LEAVE --> STEP_3
 STEP_3 --> ADMIN_CHECK[Review: Full Approval Trail\nAll Notes + Documents]
@@ -269,14 +255,13 @@ ADMIN_DEC -->|Reject| ADMIN_REJ[❌ Reject · Enter reason]
 ADMIN_REJ --> END_3([🔴 END — Rejected Step 3\nNotify Employee])
 ADMIN_DEC -->|Return to HRMO| ADMIN_RET[Return to HRMO For Review]
 ADMIN_RET --> STEP_2
-
 S3_STATUS --> STEP_4[━━━ STEP 4 ━━━\n👔 MAYOR FINAL APPROVAL]
 MAYOR_QUEUE --> STEP_4
 STEP_4 --> MAYOR_CHECK[Review Complete Trail:\nDept Head · HRMO · Admin\nAll Notes + Docs + Signatures]
 MAYOR_CHECK --> MAYOR_DEC{Mayor Decision?}
-MAYOR_DEC -->|Final Approve| MAYOR_APR[✅ Final Approve\nAdd signature & notes]
+MAYOR_DEC -->|Final Approve| MAYOR_APR[✅ Final Approve\nAdd signature &amp; notes]
 MAYOR_APR --> DEDUCT[Deduct Leave Credits From Employee Balance]
-DEDUCT --> GEN_PDF[Generate Official Leave Form PDF\nWith All 4 Approvals & Signatures]
+DEDUCT --> GEN_PDF[Generate Official Leave Form PDF\nWith All 4 Approvals &amp; Signatures]
 GEN_PDF --> NOTIFY_ALL[Notify: Employee · Dept Head · HRMO · Admin]
 NOTIFY_ALL --> LOG_AUDIT[Log in Audit Trail]
 LOG_AUDIT --> APPROVED([🟢 APPROVED ✓\nPDF Sent to Employee])
@@ -284,7 +269,6 @@ MAYOR_DEC -->|Reject| MAYOR_REJ[❌ Final Rejection · Enter reason]
 MAYOR_REJ --> END_4([🔴 END — Rejected Step 4\nNotify All Parties])
 MAYOR_DEC -->|Return to Admin| MAYOR_RET[Return to Admin For Review]
 MAYOR_RET --> STEP_3
-
 style VISIT fill:#00c471,stroke:#009954,color:#000
 style LANDING fill:#0d1f14,stroke:#00c471,color:#e8edf2
 style ROLE_CHK fill:#f0a500,stroke:#d97706,color:#000
@@ -331,427 +315,519 @@ style LOGIN_ERR fill:#3a0a14,stroke:#f04060,color:#ffb0b8
       </div>
     </div>
   </div>
-</div>
 
-<!-- FULLSCREEN OVERLAY -->
+  <!-- ══════ LANDING & AUTH ══════ -->
+  <div class="diagram-panel" id="panel-auth">
+    <div class="panel-inner" id="inner-auth">
+      <div id="diag-auth" class="mermaid">
+flowchart TD
+A_START([User Visits Ayungon HRMS]) --> A_LAND[Landing Page Bante Ayungon\nHero Section\nAnnouncements Preview\nSign In and Sign Up Buttons]
+A_LAND --> A_ACC{Has Account?}
+A_ACC -->|No - Sign Up| A_FORM[Sign Up Form\nFirst Name and Last Name\nEmail Address\nPassword and Confirm Password]
+A_FORM --> A_VALID{Form Valid?}
+A_VALID -->|No| A_ERR1[Validation Error\nRequired fields missing\nPassword mismatch\nInvalid email format]
+A_ERR1 --> A_FORM
+A_VALID -->|Yes| A_CREATE[Create Account\nSave to Database\nRole - Employee by default]
+A_CREATE --> A_VER_SENT[Send Email Verification Link\nExpires after 24 hours]
+A_VER_SENT --> A_CHK_VER{Verification\nLink Clicked?}
+A_CHK_VER -->|No or Expired| A_RESEND[Resend Verification Email]
+A_RESEND --> A_CHK_VER
+A_CHK_VER -->|Yes| A_VER_OK[Email Verified\nAccount Activated]
+A_VER_OK --> A_PROF
+A_ACC -->|Yes - Sign In| A_LOGIN[Sign In Form\nEmail Address\nPassword]
+A_LOGIN --> A_CREDS{Credentials\nValid?}
+A_CREDS -->|No| A_ERR2[Invalid email or password\nFailed attempt recorded]
+A_ERR2 --> A_LOCKOUT{Too Many\nFailed Attempts?}
+A_LOCKOUT -->|No| A_LOGIN
+A_LOCKOUT -->|Yes| A_BLOCKED[Account Temporarily Locked\nLogged in Audit Trail\nContact Admin to unblock]
+A_CREDS -->|Forgot Password| A_FP[Forgot Password\nEnter registered email]
+A_FP --> A_FP_SEND[Send Password Reset Link\nValid for 1 hour]
+A_FP_SEND --> A_FP_SET[User sets New Password\nConfirm New Password]
+A_FP_SET --> A_LOGIN
+A_CREDS -->|Yes| A_PROF
+A_PROF{Profile\nComplete?}
+A_PROF -->|Yes| A_ROLE([Route to Dashboard\nby Assigned Role])
+A_PROF -->|No - First Login| A_ON1[ONBOARDING STEP 1\nPersonal Information\nEmployee ID - Full Name - Contact\nDate of Birth - Gender - Civil Status - Address]
+A_ON1 --> A_ON2[ONBOARDING STEP 2\nEmployment Details\nPosition - Department\nSalary Grade - Employment Type - Date Hired]
+A_ON2 --> A_ON3[ONBOARDING STEP 3\nDocuments Upload\n201 File 5 required documents\nSALN 1 document\nOther Files up to 6 documents]
+A_ON3 --> A_DOC{Upload Now?}
+A_DOC -->|Upload| A_UP[Upload Documents\nFile validation\nSave to secure storage]
+A_DOC -->|Skip| A_SKIP[Mark as Skipped\nReminder on next login]
+A_UP --> A_ROLE
+A_SKIP --> A_ROLE
+style A_START fill:#00c471,stroke:#009954,color:#000
+style A_LAND fill:#0d1f14,stroke:#00c471,color:#e8edf2
+style A_VER_OK fill:#164030,stroke:#00c471,color:#e8edf2
+style A_ROLE fill:#f0a500,stroke:#d97706,color:#000
+style A_ERR1 fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style A_ERR2 fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style A_BLOCKED fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style A_ON1 fill:#1e3a5f,stroke:#3b8eff,color:#fff
+style A_ON2 fill:#2d1f5e,stroke:#9b6dff,color:#fff
+style A_ON3 fill:#3d2a00,stroke:#f0a500,color:#fff
+style A_FP_SEND fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+</div>
+    </div>
+  </div>
+
+  <!-- ══════ ADMIN ══════ -->
+  <div class="diagram-panel" id="panel-admin">
+    <div class="panel-inner" id="inner-admin">
+      <div id="diag-admin" class="mermaid">
+flowchart TD
+AD_START([Admin Logs In]) --> AD_DASH[ADMIN DASHBOARD\nTotal Employees and Departments\nPending Requests\nLeave Stats Chart\nDept Distribution Chart]
+AD_DASH --> AD_NAV{Admin Navigation}
+AD_NAV -->|Employee Management| AD_EMP[Employee List\nSearch and Filter by Dept or Status]
+AD_EMP --> AD_EMP_MODAL[View Employee 4-Tab Modal\nTab 1 Personal Info\nTab 2 Employment Details\nTab 3 Documents\nTab 4 Leave History]
+AD_EMP --> AD_EMP_ACT{Action?}
+AD_EMP_ACT -->|Add New Employee| AD_EMP_ADD[Add Employee Form\nPersonal and Employment and Docs]
+AD_EMP_ACT -->|Edit Employee| AD_EMP_EDIT[Edit any field]
+AD_EMP_ACT -->|Change Status| AD_EMP_ST[Active or Inactive or On Leave\nRetired or Resigned or Terminated]
+AD_NAV -->|Departments| AD_DEPT[Department Cards\nAccounting - Agriculture - DEPED\nGSO - KALAHI - Treasury]
+AD_DEPT --> AD_DEPT_ACT{Action?}
+AD_DEPT_ACT -->|View Members| AD_DEPT_MEM[Member list with roles and status]
+AD_DEPT_ACT -->|Edit| AD_DEPT_EDIT[Edit Name or Department Head]
+AD_DEPT_ACT -->|Status| AD_DEPT_ST[Enable or Disable Department]
+AD_NAV -->|Leave Approval Step 3| AD_LEAVE[Leave Management Queue\nFilter - HRMO Approved\n9 Total - 3 In Progress - 6 Approved]
+AD_LEAVE --> AD_LEAVE_OPEN[Open Request\nEmployee Info - Leave Type - Dates\nDept Head Notes - HRMO Notes\nDocs - Current Status Trail]
+AD_LEAVE_OPEN --> AD_LEAVE_DEC{Admin Decision?}
+AD_LEAVE_DEC -->|Approve| AD_APR[Approve\nAdd admin notes\nStatus - Admin Approved\nNotify Mayor]
+AD_LEAVE_DEC -->|Reject| AD_REJ[Reject\nEnter reason\nNotify Employee]
+AD_LEAVE_DEC -->|Return to HRMO| AD_RET[Return for re-review\nStatus reverts to Step 2]
+AD_LEAVE_DEC -->|View PDF| AD_PDF[View Leave Form PDF\nWith prior signatures]
+AD_NAV -->|Announcements| AD_ANN[Announcements Manager]
+AD_ANN --> AD_ANN_CREATE[Create Post\nTitle - Body - Image\nBackground Color - Location Tag - Publish]
+AD_ANN --> AD_ANN_MANAGE[Edit or Delete existing posts\nOpen Chat thread per post]
+AD_NAV -->|Calendar| AD_CAL[Monthly Calendar Grid]
+AD_CAL --> AD_CAL_ACT{Action?}
+AD_CAL_ACT -->|Add| AD_CAL_ADD[Add Event - Task or Reminder or Holiday\nDate - Title - Color]
+AD_CAL_ACT -->|Edit| AD_CAL_EDIT[Edit event details]
+AD_CAL_ACT -->|Delete| AD_CAL_DEL[Delete with confirm]
+AD_CAL_ACT -->|Hover| AD_CAL_TIP[Tooltip - event title and details]
+AD_NAV -->|Attendance| AD_ATT[Attendance Management]
+AD_ATT --> AD_UPLOAD[Upload Biometrics\nTXT - XLSX - XLS - CSV - Max 20MB]
+AD_UPLOAD --> AD_VALID{File Valid?}
+AD_VALID -->|No| AD_ERR[Invalid Format or Size]
+AD_ERR --> AD_UPLOAD
+AD_VALID -->|Yes| AD_PARSE[Parse Records - Match Employee IDs\nCalc Present - Absent - Undertime]
+AD_PARSE --> AD_SAVE[Save to DB - Update Stats]
+AD_ATT --> AD_VIEW[View All Records\nFilter by Employee or Date or Month\nCalendar Heatmap]
+AD_VIEW --> AD_3DOT{3-dot Menu}
+AD_3DOT -->|View Detail| AD_DETAIL[Full Day Detail\nTime In - Time Out - Duration]
+AD_3DOT -->|Export DTR| AD_DTR[Download DTR XLSX\nSingle Month or Full Year]
+AD_NAV -->|User Management| AD_USER[12 Users - 3 Dept Heads - 1 HRMO - 1 Mayor]
+AD_USER --> AD_USER_ACT{Action?}
+AD_USER_ACT -->|Create| AD_USER_NEW[New User - Name - Email - Role]
+AD_USER_ACT -->|Edit Role| AD_USER_ROLE[Change Role Assignment]
+AD_USER_ACT -->|Search| AD_USER_FIND[By Name or Email or Role or Dept]
+AD_NAV -->|Audit Log| AD_AUDIT[Security Audit Log - Default - Today\nLogins - Failures - Blocked IPs\nRole Changes - Data Edits]
+AD_AUDIT --> AD_AUDIT_FILTER[Filter - Date - Action - User - IP]
+style AD_START fill:#f0a500,stroke:#d97706,color:#000
+style AD_DASH fill:#1a2800,stroke:#f0a500,color:#f0e0a0
+style AD_APR fill:#164030,stroke:#00c471,color:#e8edf2
+style AD_REJ fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style AD_ERR fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style AD_PARSE fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+style AD_SAVE fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+style AD_AUDIT fill:#2a0014,stroke:#f04060,color:#ffb0b8
+style AD_RET fill:#1e3a5f,stroke:#3b8eff,color:#fff
+</div>
+    </div>
+  </div>
+
+  <!-- ══════ EMPLOYEE ══════ -->
+  <div class="diagram-panel" id="panel-emp">
+    <div class="panel-inner" id="inner-emp">
+      <div id="diag-emp" class="mermaid">
+flowchart TD
+E_START([Employee Logs In]) --> E_DASH[EMPLOYEE DASHBOARD\nProfile Snapshot - Leave Credits 2026\nQuick Actions - New Leave - View PDS]
+E_DASH --> E_NAV{Navigation}
+E_NAV -->|My Profile| E_PROF[My Profile 3 Tabs]
+E_PROF --> E_P1[Tab 1 - Personal Information\nName - DOB - Gender - Civil Status\nContact - Address]
+E_PROF --> E_P2[Tab 2 - Employment Details\nPosition - Department\nSalary Grade - Type - Hire Date]
+E_PROF --> E_P3[Tab 3 - Documents\n201 File - SALN - Other Files]
+E_P3 --> E_DOC{Document Action?}
+E_DOC -->|Download| E_DL[Download file to device]
+E_DOC -->|Re-upload| E_UP[Replace with new file]
+E_NAV -->|Leave Request| E_HIST[Leave Request History\nControl No - Date - Period - Days - Type - Status]
+E_HIST --> E_MENU{3-dot Menu by Status}
+E_MENU -->|Pending| E_PEND[Edit Request - View PDF]
+E_MENU -->|In Progress| E_PROG[View PDF only - Cannot edit]
+E_MENU -->|Mayor Approved| E_APPR[View - Download - Print]
+E_MENU -->|Rejected| E_REJ_V[View rejection reason and step]
+E_HIST --> E_NEW[New Leave Request\nAuto-fill - Name - Supervisor - Dept - Position]
+E_NEW --> E_TYPE[Select Leave Type - 15 types]
+E_TYPE --> E_TYPES[Vacation - Mandatory - Sick\nMaternity - Paternity - Special Privilege\nSolo Parent - Study - VAWC\nRehabilitation - Special Women\nEmergency - Adoption - Monetization - Terminal]
+E_TYPES --> E_PERIOD[Enter Period\nStart Date - End Date - Days\nOptional Time - Live Balance Check]
+E_PERIOD --> E_BAL{Sufficient Credits?}
+E_BAL -->|No| E_BALERR[Insufficient Credits\nSubmit button disabled]
+E_BAL -->|Yes| E_SUBMIT[Submit Request\nStatus - PENDING\nControl No generated\nDept Head notified]
+E_NAV -->|Announcements| E_ANN[View Announcements Feed]
+E_ANN --> E_ANN_ACT{Action?}
+E_ANN_ACT -->|Like| E_LIKE[Toggle like on post]
+E_ANN_ACT -->|Comment| E_CHAT[Open Chat thread]
+E_NAV -->|Calendar| E_CAL[Monthly Calendar - View Only\nTasks - Reminders - Holidays - Leave]
+E_NAV -->|Attendance| E_ATT[My Attendance\nIdentity Card and Summary Stats]
+E_ATT --> E_CHARTS[Weekly Line Chart\nMonth Donut - Calendar Heatmap]
+E_CHARTS --> E_DTR[Download DTR\nSingle Month XLSX\nor Full Year 12-Sheet XLSX]
+E_NAV -->|PDS| E_PDS[Personal Data Sheet CS Form 212]
+E_PDS --> E_PDS_CHK{PDS Exists?}
+E_PDS_CHK -->|No| E_PDS_NEW[Create New PDS]
+E_PDS_CHK -->|Yes| E_PDS_VIEW[View Existing PDS]
+E_PDS_NEW --> E_P1PDS[Page 1 - Personal and Family\nName - DOB - IDs - Address\nSpouse - Parents - Children]
+E_P1PDS --> E_P2PDS[Page 2 - Education and Eligibility\nElementary to Graduate - Civil Service]
+E_P2PDS --> E_P3PDS[Page 3 - Work Experience and Training\nAll positions - Trainings - Hours]
+E_P3PDS --> E_P4PDS[Page 4 - Declarations and References\nSkills - Memberships - Declarations 1-10\n3 References - Oath and Signature]
+E_P4PDS --> E_PDSSUB[Submit PDS - PDF Preview - Notify HR]
+E_PDS_VIEW --> E_PDSACT{PDS Action?}
+E_PDSACT -->|Edit| E_PDSEDIT[Edit any of 4 pages]
+E_PDSACT -->|Preview| E_PDSPRV[Full-screen preview with zoom]
+E_PDSACT -->|Download| E_PDSDL[Download CS Form 212 PDF]
+E_PDSACT -->|Print| E_PDSPRINT[Print Legal 8.5x13 Scale 100 percent]
+style E_START fill:#00c471,stroke:#009954,color:#000
+style E_DASH fill:#001a0e,stroke:#00c471,color:#a0ffe0
+style E_SUBMIT fill:#164030,stroke:#00c471,color:#e8edf2
+style E_PDSSUB fill:#164030,stroke:#00c471,color:#e8edf2
+style E_APPR fill:#164030,stroke:#00c471,color:#e8edf2
+style E_BALERR fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style E_REJ_V fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style E_PDS fill:#1e0a38,stroke:#ff5fa0,color:#ffb8d8
+style E_P1PDS fill:#1e3a5f,stroke:#3b8eff,color:#fff
+style E_P2PDS fill:#2d1f5e,stroke:#9b6dff,color:#fff
+style E_P3PDS fill:#3d2a00,stroke:#f0a500,color:#fff
+style E_P4PDS fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style E_TYPES fill:#0a1a2a,stroke:#3b8eff,color:#c0d8f0
+</div>
+    </div>
+  </div>
+
+  <!-- ══════ DEPT HEAD ══════ -->
+  <div class="diagram-panel" id="panel-dh">
+    <div class="panel-inner" id="inner-dh">
+      <div id="diag-dh" class="mermaid">
+flowchart TD
+DH_START([Dept Head Logs In]) --> DH_DASH[DEPT HEAD DASHBOARD\nAll Employee features available\nPlus - Leave Approval Queue badge]
+DH_DASH --> DH_NAV{Navigation}
+DH_NAV -->|Leave Approval Queue| DH_Q[Leave Approval Queue\nStep 1 Recommendation Stage\nFiltered - Own Department Only\nStatus - Pending - Awaiting Action]
+DH_Q --> DH_LIST[Pending Requests List\nEmployee Name - Leave Type - Period - Days\nDate Submitted - Supporting Docs]
+DH_LIST --> DH_OPEN[Open Leave Request Full View\nEmployee Personal Info\nLeave Type and CSC Rules\nRequested Dates and Days\nCurrent Leave Credit Balance\nReason for Leave\nAttached Supporting Documents]
+DH_OPEN --> DH_DEC{Recommendation Decision?}
+DH_DEC -->|Recommend| DH_REC[Recommend for Approval\nAdd recommendation note\nOptional comments to HRMO]
+DH_REC --> DH_S1[Status - PENDING to DEPT HEAD APPROVED\nHRMO receives notification\nRequest moves to Step 2]
+DH_DEC -->|Not Recommend| DH_NREC[Not Recommend\nMust enter rejection reason\nExplain basis for non-recommendation]
+DH_NREC --> DH_END([Rejected at Step 1\nEmployee notified with reason\nRequest closed])
+DH_DEC -->|Request More Info| DH_INFO[Send message to employee\nRequest additional documents\nRequest clarification]
+DH_INFO --> DH_WAIT{Employee Responds?}
+DH_WAIT -->|Yes within 7 days| DH_OPEN
+DH_WAIT -->|No response 7-day timeout| DH_END
+DH_NAV -->|My Leave Request| DH_OWN[Submit Own Leave Request\nSame process as Employee\nSubmit - Pending approval chain]
+DH_NAV -->|My Profile| DH_PROF[Profile 3 Tabs\nPersonal - Employment - Documents]
+DH_NAV -->|PDS| DH_PDS[Personal Data Sheet\n4-page CS Form 212]
+DH_NAV -->|Attendance| DH_ATT[My Attendance\nCharts - DTR Download]
+DH_NAV -->|Announcements| DH_ANN[View Posts - Like - Comment]
+DH_NAV -->|Calendar| DH_CAL[Monthly Calendar View Only]
+style DH_START fill:#3b8eff,stroke:#1a6de0,color:#fff
+style DH_DASH fill:#001428,stroke:#3b8eff,color:#a0c8ff
+style DH_REC fill:#164030,stroke:#00c471,color:#e8edf2
+style DH_S1 fill:#1e3a5f,stroke:#3b8eff,color:#fff
+style DH_NREC fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style DH_END fill:#f04060,stroke:#c0203a,color:#fff
+style DH_INFO fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+</div>
+    </div>
+  </div>
+
+  <!-- ══════ HRMO ══════ -->
+  <div class="diagram-panel" id="panel-hrmo">
+    <div class="panel-inner" id="inner-hrmo">
+      <div id="diag-hrmo" class="mermaid">
+flowchart TD
+HR_START([HRMO Logs In]) --> HR_DASH[HRMO DASHBOARD\nLeave Approval Step 2 Review\nNotification - pending reviews awaiting action]
+HR_DASH --> HR_Q[Leave Approval Queue\nStep 2 HRMO Review Stage\nFiltered - Dept Head Approved status only]
+HR_Q --> HR_LIST[Requests List\nEmployee - Department - Leave Type\nPeriod - Days - Dept Head Recommendation]
+HR_LIST --> HR_OPEN[Open Request Full Review View\nEmployee Personal and Employment Info\nLeave Type and CSC Policy Reference\nDates and Days Requested\nCurrent Leave Credit Balance\nDept Head Notes and Recommendation\nAttached Supporting Documents]
+HR_OPEN --> HR_DEC{HRMO Review Decision?}
+HR_DEC -->|Approve| HR_APR[Approve\nAdd review notes\nConfirm CSC rules compliance]
+HR_APR --> HR_S2[Status - DEPT HEAD APPROVED to HRMO APPROVED\nAdmin receives notification\nRequest moves to Step 3]
+HR_DEC -->|Reject| HR_REJ[Reject\nMust enter rejection reason\nSpecify rule or policy violated]
+HR_REJ --> HR_END([Rejected at Step 2\nEmployee notified with full reason\nDept Head also notified])
+HR_DEC -->|Return to Dept Head| HR_RET[Return for Clarification\nAdd note explaining what is needed\nStatus reverts to Step 1]
+HR_RET --> HR_BACK[Dept Head receives notification\nMust re-review and re-recommend]
+HR_DEC -->|Request Info| HR_INFO[Send message to Employee\nPause review - Employee must respond]
+HR_INFO --> HR_WAIT{Employee Responds?}
+HR_WAIT -->|Yes within 7 days| HR_OPEN
+HR_WAIT -->|No response 7-day timeout| HR_END
+HR_DEC -->|View PDF| HR_PDF[View current Leave Form PDF\nWith Dept Head signature visible]
+style HR_START fill:#9b6dff,stroke:#7a4de0,color:#fff
+style HR_DASH fill:#140a28,stroke:#9b6dff,color:#d0b8ff
+style HR_Q fill:#2d1f5e,stroke:#9b6dff,color:#fff
+style HR_APR fill:#164030,stroke:#00c471,color:#e8edf2
+style HR_S2 fill:#2d1f5e,stroke:#9b6dff,color:#fff
+style HR_REJ fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style HR_END fill:#f04060,stroke:#c0203a,color:#fff
+style HR_RET fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+style HR_BACK fill:#1e3a5f,stroke:#3b8eff,color:#fff
+style HR_INFO fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+</div>
+    </div>
+  </div>
+
+  <!-- ══════ MAYOR ══════ -->
+  <div class="diagram-panel" id="panel-mayor">
+    <div class="panel-inner" id="inner-mayor">
+      <div id="diag-mayor" class="mermaid">
+flowchart TD
+M_START([Mayor Logs In]) --> M_DASH[MAYOR DASHBOARD\nLeave Approval Final Authority\nNotification - awaiting final approval]
+M_DASH --> M_Q[Leave Approval Queue\nStep 4 Mayor Final Approval\nFiltered - Admin Approved status only]
+M_Q --> M_LIST[Requests List\nEmployee - Dept - Leave Type\nPeriod - Days - Complete 3-step trail]
+M_LIST --> M_OPEN[Open Request Complete Review\nEmployee Personal and Employment Info\nLeave Type - Dates - Days\nLeave Credit Balance\nDept Head Recommendation and Notes\nHRMO Review and Notes\nAdmin Approval and Notes\nAll Supporting Documents\nFull Approval Timeline]
+M_OPEN --> M_DEC{Mayor Final Decision?}
+M_DEC -->|Final Approve| M_APR[Final Approve\nAdd Mayor signature\nAdd official notes]
+M_APR --> M_DEDUCT[Deduct Leave Credits\nFrom Employee Balance\nUpdate leave ledger]
+M_DEDUCT --> M_GEN[Generate Official Leave Form PDF\nAll 4 Signatures Embedded\nDept Head - HRMO - Admin - Mayor]
+M_GEN --> M_NOTIFY[Notify All Parties\nEmployee receives PDF\nDept Head - HRMO - Admin confirmation]
+M_NOTIFY --> M_LOG[Log in System Audit Trail\nTimestamp - Mayor approval record\nImmutable audit entry]
+M_LOG --> M_DONE([APPROVED Leave Granted\nEmployee download and print available])
+M_DEC -->|Reject| M_REJ[Final Rejection\nEnter rejection reason\nFinal decision no further appeal]
+M_REJ --> M_END([Rejected at Step 4\nAll parties notified\nEmployee - Dept Head - HRMO - Admin])
+M_DEC -->|Return to Admin| M_RET[Return to Admin for Re-review\nAdd note explaining concern\nStatus reverts to Step 3]
+M_RET --> M_ADMIN[Admin notified\nMust re-approve before returning to Mayor]
+M_DEC -->|View PDF| M_PDF[View Leave Form PDF\nAll 3 prior approvals visible]
+style M_START fill:#f0a500,stroke:#d97706,color:#000
+style M_DASH fill:#1a1200,stroke:#f0a500,color:#f0e0a0
+style M_Q fill:#3d2a00,stroke:#f0a500,color:#fff
+style M_APR fill:#164030,stroke:#00c471,color:#e8edf2
+style M_GEN fill:#164030,stroke:#00c471,color:#e8edf2
+style M_DEDUCT fill:#0a1a2a,stroke:#3b8eff,color:#c0d8f0
+style M_NOTIFY fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+style M_LOG fill:#001e28,stroke:#00c8e0,color:#a0f0ff
+style M_DONE fill:#00c471,stroke:#009954,color:#000
+style M_REJ fill:#3a0a14,stroke:#f04060,color:#ffb0b8
+style M_END fill:#f04060,stroke:#c0203a,color:#fff
+style M_RET fill:#3d2a00,stroke:#f0a500,color:#fff
+style M_ADMIN fill:#1e3a5f,stroke:#3b8eff,color:#fff
+</div>
+    </div>
+  </div>
+
+</div><!-- end canvasWrap -->
+
+<!-- FULLSCREEN -->
 <div id="fsOverlay">
   <div id="fsToolbar">
-    <span id="fsTitle">⛶ Ayungon HRMS — Full System Flowchart</span>
+    <span id="fsTitle">⛶ Ayungon HRMS</span>
     <div style="display:flex;gap:.4rem;align-items:center;flex-wrap:wrap">
       <button class="btn" onclick="fsDoZoom(1.25)">＋</button>
       <button class="btn" onclick="fsDoZoom(0.8)">－</button>
       <button class="btn" onclick="fsFit()">⊞ Fit</button>
       <span class="zoom-lbl" id="fsZoomLabel">100%</span>
       <div class="sep"></div>
-      <button class="btn green" onclick="doDownloadJPG()">⬇ JPG</button>
+      <button class="btn green"  onclick="doDownloadJPG()">⬇ JPG</button>
       <button class="btn purple" onclick="doDownloadSVG()">⬇ SVG</button>
-      <button class="btn red" onclick="closeFullscreen()">✕ Close</button>
+      <button class="btn red"    onclick="closeFullscreen()">✕ Close</button>
     </div>
   </div>
-  <div id="fsCanvas">
-    <div id="fsInner"></div>
-  </div>
+  <div id="fsCanvas"><div id="fsInner"></div></div>
 </div>
-
-<!-- TOAST -->
 <div id="toast"></div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// MERMAID INIT
-// ═══════════════════════════════════════════════════════
 mermaid.initialize({
-  startOnLoad: false,
-  theme: 'dark',
-  themeVariables: {
-    primaryColor:        '#0f1d2c',
-    primaryTextColor:    '#dde6ef',
-    primaryBorderColor:  '#1e3350',
-    lineColor:           '#2e4a68',
-    secondaryColor:      '#0b1520',
-    tertiaryColor:       '#0f1d2c',
-    background:          '#060c12',
-    mainBkg:             '#0f1d2c',
-    clusterBkg:          '#0b1520',
-    titleColor:          '#dde6ef',
-    edgeLabelBackground: '#0f1d2c',
-    fontFamily:          'DM Sans, sans-serif',
-    fontSize:            '13px',
+  startOnLoad:false, theme:'dark',
+  themeVariables:{
+    primaryColor:'#0f1d2c',primaryTextColor:'#dde6ef',primaryBorderColor:'#1e3350',
+    lineColor:'#2e4a68',secondaryColor:'#0b1520',tertiaryColor:'#0f1d2c',
+    background:'#060c12',mainBkg:'#0f1d2c',clusterBkg:'#0b1520',
+    titleColor:'#dde6ef',edgeLabelBackground:'#0f1d2c',
+    fontFamily:'DM Sans, sans-serif',fontSize:'13px'
   },
-  flowchart: { htmlLabels: true, curve: 'basis', padding: 20, useMaxWidth: false }
+  flowchart:{htmlLabels:true,curve:'basis',padding:20,useMaxWidth:false}
 });
 
-// ═══════════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════════
-var scale = 1.0;
-var fsScale = 1.0;
-var diagramReady = false;
+var TABS=['all','auth','admin','emp','dh','hrmo','mayor'];
+var scales={},rendered={},currentTab='all',diagramReady=false,fsScale=1.0;
+TABS.forEach(function(t){scales[t]=1.0;rendered[t]=false;});
 
-// ═══════════════════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════════════════
-window.addEventListener('load', function() {
-  var el = document.getElementById('mainDiagram');
-  mermaid.run({ nodes: [el] }).then(function() {
-    document.getElementById('loadingMsg').style.display = 'none';
-    diagramReady = true;
-    setTimeout(doFitView, 300);
-  }).catch(function(e) {
-    document.getElementById('loadingMsg').innerHTML = '<p style="color:#f04060">Render error. Please reload.</p>';
-    console.error(e);
-  });
-});
-
-// ═══════════════════════════════════════════════════════
-// ZOOM HELPERS — MAIN
-// ═══════════════════════════════════════════════════════
-function setScale(s) {
-  scale = Math.min(Math.max(s, 0.05), 5);
-  document.getElementById('canvasInner').style.transform = 'scale(' + scale + ')';
-  document.getElementById('zoomLabel').textContent = Math.round(scale * 100) + '%';
-}
-
-function doZoom(factor) { setScale(scale * factor); }
-
-function doReset() {
-  setScale(1.0);
-  var c = document.getElementById('mainCanvas');
-  c.scrollLeft = 0; c.scrollTop = 0;
-}
-
-function doFitView() {
-  var c = document.getElementById('mainCanvas');
-  var svg = document.querySelector('#mainDiagram svg');
-  if (!svg) return;
-  var prevT = document.getElementById('canvasInner').style.transform;
-  document.getElementById('canvasInner').style.transform = 'scale(1)';
-  var svgW = svg.scrollWidth;
-  var svgH = svg.scrollHeight;
-  document.getElementById('canvasInner').style.transform = prevT;
-  var cW = c.clientWidth  - 80;
-  var cH = c.clientHeight - 80;
-  var fit = Math.min(cW / svgW, cH / svgH, 1);
-  setScale(fit > 0 ? fit : 0.3);
-  c.scrollLeft = 0; c.scrollTop = 0;
-}
-
-// ═══════════════════════════════════════════════════════
-// FULLSCREEN — FIXED
-// ═══════════════════════════════════════════════════════
-function openFullscreen() {
-  if (!diagramReady) { showToast('Diagram not ready yet, please wait.'); return; }
-
-  var origSvg = document.querySelector('#mainDiagram svg');
-  if (!origSvg) { showToast('Diagram not ready yet, please wait.'); return; }
-
-  var fsInner = document.getElementById('fsInner');
-  fsInner.innerHTML = '';
-  fsInner.style.transform = '';
-
-  // Clone SVG and ensure it renders correctly
-  var clone = origSvg.cloneNode(true);
-  clone.style.display = 'block';
-  clone.style.maxWidth = 'none';
-  clone.removeAttribute('width');
-  clone.removeAttribute('height');
-
-  // Preserve viewBox so it sizes correctly
-  var vb = origSvg.getAttribute('viewBox');
-  if (!vb) {
-    var w = origSvg.getBoundingClientRect().width;
-    var h = origSvg.getBoundingClientRect().height;
-    clone.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+// ── RENDER ALL ──
+window.addEventListener('load',function(){
+  var total=TABS.length,done=0;
+  function bump(){done++;document.getElementById('loadBar').style.width=Math.round(done/total*100)+'%';if(done===total){document.getElementById('loadingMsg').style.display='none';diagramReady=true;setTimeout(doFitView,200);}}
+  var idx=0;
+  function next(){
+    if(idx>=TABS.length)return;
+    var t=TABS[idx++];
+    mermaid.run({nodes:[document.getElementById('diag-'+t)]}).then(function(){rendered[t]=true;bump();next();}).catch(function(e){console.error(t,e);bump();next();});
   }
-  // Set explicit pixel size on clone equal to original
-  clone.style.width  = origSvg.scrollWidth  + 'px';
-  clone.style.height = origSvg.scrollHeight + 'px';
+  next();
+});
 
-  fsInner.appendChild(clone);
+// ── TABS ──
+function switchTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.tab').forEach(function(el){el.classList.toggle('active',el.dataset.tab===tab);});
+  TABS.forEach(function(t){document.getElementById('panel-'+t).classList.toggle('active',t===tab);});
+  setTimeout(doFitView,80);
+}
+
+// ── ZOOM ──
+function getPanel(){return document.getElementById('panel-'+currentTab);}
+function getInner(){return document.getElementById('inner-'+currentTab);}
+function getSVG()  {var d=document.getElementById('diag-'+currentTab);return d?d.querySelector('svg'):null;}
+function setScale(s){
+  s=Math.min(Math.max(s,0.04),6);scales[currentTab]=s;
+  getInner().style.transform='scale('+s+')';
+  document.getElementById('zoomLabel').textContent=Math.round(s*100)+'%';
+}
+function doZoom(f){setScale(scales[currentTab]*f);}
+function doReset(){setScale(1);var p=getPanel();p.scrollLeft=0;p.scrollTop=0;}
+function doFitView(){
+  var panel=getPanel(),svg=getSVG();if(!svg)return;
+  getInner().style.transform='scale(1)';
+  var sw=svg.scrollWidth||1000,sh=svg.scrollHeight||1000;
+  var cw=panel.clientWidth-80,ch=panel.clientHeight-80;
+  var fit=Math.min(cw/sw,ch/sh);
+  if(!isFinite(fit)||fit<=0)fit=0.3;
+  setScale(Math.min(fit,1));
+  panel.scrollLeft=0;panel.scrollTop=0;
+}
+
+// ── PAN ──
+(function(){
+  var down=false,sx,sy,sl,st,el=null;
+  TABS.forEach(function(t){
+    var c=document.getElementById('panel-'+t);
+    c.addEventListener('mousedown',function(e){if(e.button!==0)return;down=true;el=c;sx=e.clientX;sy=e.clientY;sl=c.scrollLeft;st=c.scrollTop;c.style.cursor='grabbing';});
+    c.addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey){e.preventDefault();currentTab=t;doZoom(e.deltaY<0?1.1:0.9);}},{passive:false});
+  });
+  document.addEventListener('mousemove',function(e){if(!down||!el)return;el.scrollLeft=sl-(e.clientX-sx);el.scrollTop=st-(e.clientY-sy);});
+  document.addEventListener('mouseup',function(){if(el)el.style.cursor='grab';down=false;el=null;});
+})();
+
+// ── FULLSCREEN ──
+function openFullscreen(){
+  if(!diagramReady){showToast('Not ready yet.');return;}
+  var svg=getSVG();if(!svg){showToast('No diagram.');return;}
+  var fi=document.getElementById('fsInner');fi.innerHTML='';fi.style.transform='';
+  var cl=svg.cloneNode(true);cl.style.display='block';cl.style.maxWidth='none';
+  cl.removeAttribute('width');cl.removeAttribute('height');
+  var vb=svg.getAttribute('viewBox');if(vb)cl.setAttribute('viewBox',vb);
+  cl.style.width=svg.scrollWidth+'px';cl.style.height=svg.scrollHeight+'px';
+  fi.appendChild(cl);
+  var lbl=document.querySelector('.tab.active');
+  document.getElementById('fsTitle').textContent='⛶ Ayungon HRMS — '+(lbl?lbl.textContent.trim():'');
   document.getElementById('fsOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  fsScale = 1.0;
-  setTimeout(fsFit, 150);
+  document.body.style.overflow='hidden';fsScale=1.0;setTimeout(fsFit,150);
 }
-
-function closeFullscreen() {
-  document.getElementById('fsOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+function closeFullscreen(){document.getElementById('fsOverlay').classList.remove('open');document.body.style.overflow='';}
+function applyFsScale(){
+  fsScale=Math.min(Math.max(fsScale,0.04),6);
+  var fi=document.getElementById('fsInner');
+  fi.style.transform='scale('+fsScale+')';fi.style.transformOrigin='top left';
+  document.getElementById('fsZoomLabel').textContent=Math.round(fsScale*100)+'%';
 }
-
-function applyFsScale() {
-  fsScale = Math.min(Math.max(fsScale, 0.05), 5);
-  document.getElementById('fsInner').style.transform = 'scale(' + fsScale + ')';
-  document.getElementById('fsInner').style.transformOrigin = 'top left';
-  document.getElementById('fsZoomLabel').textContent = Math.round(fsScale * 100) + '%';
+function fsDoZoom(f){fsScale*=f;applyFsScale();}
+function fsFit(){
+  var c=document.getElementById('fsCanvas'),s=document.querySelector('#fsInner svg');if(!s)return;
+  document.getElementById('fsInner').style.transform='scale(1)';
+  var sw=s.scrollWidth||1000,sh=s.scrollHeight||1000;
+  fsScale=Math.min((c.clientWidth-80)/sw,(c.clientHeight-80)/sh);
+  if(!isFinite(fsScale)||fsScale<=0)fsScale=0.3;
+  applyFsScale();c.scrollLeft=0;c.scrollTop=0;
 }
-
-function fsDoZoom(factor) {
-  fsScale = fsScale * factor;
-  applyFsScale();
-}
-
-function fsFit() {
-  var c   = document.getElementById('fsCanvas');
-  var svg = document.querySelector('#fsInner svg');
-  if (!svg) return;
-
-  // Reset scale to measure true size
-  document.getElementById('fsInner').style.transform = 'scale(1)';
-  var svgW = svg.scrollWidth  || svg.getBoundingClientRect().width;
-  var svgH = svg.scrollHeight || svg.getBoundingClientRect().height;
-
-  var cW = c.clientWidth  - 80;
-  var cH = c.clientHeight - 80;
-  fsScale = Math.min(cW / svgW, cH / svgH);
-  if (!isFinite(fsScale) || fsScale <= 0) fsScale = 0.3;
-  applyFsScale();
-  c.scrollLeft = 0; c.scrollTop = 0;
-}
-
-// Close on Escape
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeFullscreen();
-});
-
-// ═══════════════════════════════════════════════════════
-// PAN — MAIN CANVAS
-// ═══════════════════════════════════════════════════════
-(function() {
-  var c = document.getElementById('mainCanvas');
-  var down = false, sx, sy, sl, st;
-  c.addEventListener('mousedown', function(e) {
-    if (e.button !== 0) return;
-    down = true; sx = e.clientX; sy = e.clientY;
-    sl = c.scrollLeft; st = c.scrollTop;
-    c.style.cursor = 'grabbing';
-  });
-  document.addEventListener('mousemove', function(e) {
-    if (!down) return;
-    c.scrollLeft = sl - (e.clientX - sx);
-    c.scrollTop  = st - (e.clientY - sy);
-  });
-  document.addEventListener('mouseup', function() { down = false; c.style.cursor = 'grab'; });
-  c.addEventListener('wheel', function(e) {
-    if (e.ctrlKey || e.metaKey) {
-      e.preventDefault();
-      doZoom(e.deltaY < 0 ? 1.1 : 0.9);
-    }
-  }, { passive: false });
+(function(){
+  var c=document.getElementById('fsCanvas'),down=false,sx,sy,sl,st;
+  c.addEventListener('mousedown',function(e){if(e.button!==0)return;down=true;sx=e.clientX;sy=e.clientY;sl=c.scrollLeft;st=c.scrollTop;c.style.cursor='grabbing';});
+  document.addEventListener('mousemove',function(e){if(!down)return;c.scrollLeft=sl-(e.clientX-sx);c.scrollTop=st-(e.clientY-sy);});
+  document.addEventListener('mouseup',function(){down=false;c.style.cursor='grab';});
+  c.addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey){e.preventDefault();fsDoZoom(e.deltaY<0?1.1:0.9);}},{passive:false});
 })();
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFullscreen();});
 
-// ═══════════════════════════════════════════════════════
-// PAN — FULLSCREEN CANVAS
-// ═══════════════════════════════════════════════════════
-(function() {
-  var c = document.getElementById('fsCanvas');
-  var down = false, sx, sy, sl, st;
-  c.addEventListener('mousedown', function(e) {
-    if (e.button !== 0) return;
-    down = true; sx = e.clientX; sy = e.clientY;
-    sl = c.scrollLeft; st = c.scrollTop;
-    c.style.cursor = 'grabbing';
-  });
-  document.addEventListener('mousemove', function(e) {
-    if (!down) return;
-    c.scrollLeft = sl - (e.clientX - sx);
-    c.scrollTop  = st - (e.clientY - sy);
-  });
-  document.addEventListener('mouseup', function() { down = false; c.style.cursor = 'grab'; });
-  c.addEventListener('wheel', function(e) {
-    if (e.ctrlKey || e.metaKey) {
-      e.preventDefault();
-      fsDoZoom(e.deltaY < 0 ? 1.1 : 0.9);
-    }
-  }, { passive: false });
-})();
-
-// ═══════════════════════════════════════════════════════
-// HELPER: Get true full SVG dimensions from viewBox or bbox
-// ═══════════════════════════════════════════════════════
-function getSVGFullDimensions(svg) {
-  // 1. Try viewBox — most reliable, mermaid always sets it
-  var vb = svg.getAttribute('viewBox');
-  if (vb) {
-    var parts = vb.trim().split(/[\s,]+/);
-    if (parts.length === 4) {
-      var vw = parseFloat(parts[2]);
-      var vh = parseFloat(parts[3]);
-      if (vw > 0 && vh > 0) return { w: vw, h: vh };
-    }
-  }
-  // 2. Try explicit width/height attributes
-  var aw = parseFloat(svg.getAttribute('width'));
-  var ah = parseFloat(svg.getAttribute('height'));
-  if (aw > 0 && ah > 0) return { w: aw, h: ah };
-  // 3. getBBox — gets actual content bounding box
-  try {
-    var bb = svg.getBBox();
-    if (bb.width > 0 && bb.height > 0) return { w: bb.width + bb.x * 2, h: bb.height + bb.y * 2 };
-  } catch(e) {}
-  // 4. Last resort: scroll dimensions
-  return { w: svg.scrollWidth || 2000, h: svg.scrollHeight || 4000 };
+// ── SVG HELPERS ──
+function getSVGDims(svg){
+  var vb=svg.getAttribute('viewBox');
+  if(vb){var p=vb.trim().split(/[\s,]+/);if(p.length===4){var vw=parseFloat(p[2]),vh=parseFloat(p[3]);if(vw>0&&vh>0)return{w:vw,h:vh};}}
+  var aw=parseFloat(svg.getAttribute('width')),ah=parseFloat(svg.getAttribute('height'));
+  if(aw>0&&ah>0)return{w:aw,h:ah};
+  try{var bb=svg.getBBox();if(bb.width>0&&bb.height>0)return{w:bb.width+bb.x*2,h:bb.height+bb.y*2};}catch(e){}
+  return{w:svg.scrollWidth||2000,h:svg.scrollHeight||4000};
 }
-
-// ═══════════════════════════════════════════════════════
-// HELPER: Get clean SVG string with background + correct dims
-// ═══════════════════════════════════════════════════════
-function getCleanSVGString() {
-  var origSvg = document.querySelector('#mainDiagram svg');
-  if (!origSvg) return null;
-
-  var dims = getSVGFullDimensions(origSvg);
-  var w = dims.w, h = dims.h;
-
-  var clone = origSvg.cloneNode(true);
-  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-
-  // Set explicit pixel dimensions matching viewBox
-  clone.setAttribute('width',  w);
-  clone.setAttribute('height', h);
-
-  // Ensure viewBox is set
-  if (!clone.getAttribute('viewBox')) {
-    clone.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-  }
-
-  // Add background rect as very first child
-  var bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  bg.setAttribute('x', '0');
-  bg.setAttribute('y', '0');
-  bg.setAttribute('width',  w);
-  bg.setAttribute('height', h);
-  bg.setAttribute('fill', '#060c12');
-  clone.insertBefore(bg, clone.firstChild);
-
-  return { str: new XMLSerializer().serializeToString(clone), w: w, h: h };
+function getCleanSVG(){
+  var svg=getSVG();if(!svg)return null;
+  var d=getSVGDims(svg),w=d.w,h=d.h;
+  var cl=svg.cloneNode(true);
+  cl.setAttribute('xmlns','http://www.w3.org/2000/svg');
+  cl.setAttribute('xmlns:xlink','http://www.w3.org/1999/xlink');
+  cl.setAttribute('width',w);cl.setAttribute('height',h);
+  if(!cl.getAttribute('viewBox'))cl.setAttribute('viewBox','0 0 '+w+' '+h);
+  var bg=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  bg.setAttribute('x','0');bg.setAttribute('y','0');
+  bg.setAttribute('width',w);bg.setAttribute('height',h);bg.setAttribute('fill','#060c12');
+  cl.insertBefore(bg,cl.firstChild);
+  return{str:new XMLSerializer().serializeToString(cl),w:w,h:h};
 }
+function tabName(){var l=document.querySelector('.tab.active');return l?l.textContent.trim().replace(/\s+/g,'_'):'Diagram';}
 
-// ═══════════════════════════════════════════════════════
-// DOWNLOAD SVG — FIXED
-// ═══════════════════════════════════════════════════════
-function doDownloadSVG() {
-  if (!diagramReady) { showToast('Diagram not ready yet.'); return; }
-  var result = getCleanSVGString();
-  if (!result) { showToast('Could not find diagram.'); return; }
-
-  var str = '<?xml version="1.0" encoding="UTF-8"?>\n' + result.str;
-  var blob = new Blob([str], { type: 'image/svg+xml;charset=utf-8' });
-  triggerDownload(URL.createObjectURL(blob), 'Ayungon_HRMS_Flowchart.svg');
+// ── DOWNLOAD SVG ──
+function doDownloadSVG(){
+  if(!diagramReady){showToast('Not ready yet.');return;}
+  var r=getCleanSVG();if(!r){showToast('Could not find diagram.');return;}
+  var blob=new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n'+r.str],{type:'image/svg+xml;charset=utf-8'});
+  triggerDownload(URL.createObjectURL(blob),'Ayungon_HRMS_'+tabName()+'.svg');
   showToast('✅ SVG downloaded!');
 }
 
-// ═══════════════════════════════════════════════════════
-// DOWNLOAD JPG — full resolution, full content, high quality
-// ═══════════════════════════════════════════════════════
-function doDownloadJPG() {
-  if (!diagramReady) { showToast('Diagram not ready yet.'); return; }
-
-  var origSvg = document.querySelector('#mainDiagram svg');
-  if (!origSvg) { showToast('Diagram not found.'); return; }
-
-  showToast('Preparing JPG — may take a moment…');
-  setProgress(10);
-
-  var result = getCleanSVGString();
-  if (!result) { showToast('Could not read diagram.'); setProgress(0); return; }
-
-  var svgStr = result.str;
-  var w = result.w;
-  var h = result.h;
-
-  // 3× pixel density = sharp/print quality; clamp to browser max canvas size
-  var PX = 3;
-  var maxDim = 16000;
-  if (w * PX > maxDim || h * PX > maxDim) {
-    PX = Math.floor(Math.min(maxDim / w, maxDim / h));
-    if (PX < 1) PX = 1;
-  }
-
-  setProgress(25);
-
+// ── DOWNLOAD JPG ──
+function doDownloadJPG(){
+  if(!diagramReady){showToast('Not ready yet.');return;}
+  var r=getCleanSVG();if(!r){showToast('Diagram not found.');return;}
+  var svgStr=r.str,w=r.w,h=r.h;
+  var PX=3,maxDim=16000;
+  if(w*PX>maxDim||h*PX>maxDim){PX=Math.floor(Math.min(maxDim/w,maxDim/h));if(PX<1)PX=1;}
+  showToast('Preparing JPG — please wait…');setProgress(10);
   var b64;
-  try { b64 = btoa(unescape(encodeURIComponent(svgStr))); }
-  catch(e) { showToast('❌ Encoding failed. Downloading SVG instead.'); doDownloadSVG(); setProgress(0); return; }
-
-  var dataURI = 'data:image/svg+xml;base64,' + b64;
-
-  function renderToJPG(src, onFail) {
-    var img = new Image();
-    img.onload = function() {
+  try{b64=btoa(unescape(encodeURIComponent(svgStr)));}
+  catch(e){showToast('❌ Encoding failed. Use SVG.');doDownloadSVG();setProgress(0);return;}
+  var fn='Ayungon_HRMS_'+tabName()+'.jpg';
+  function render(src,fail){
+    var img=new Image();
+    img.onload=function(){
       setProgress(70);
-      try {
-        var cvs = document.createElement('canvas');
-        cvs.width  = Math.round(w * PX);
-        cvs.height = Math.round(h * PX);
-        var ctx = cvs.getContext('2d');
-        ctx.fillStyle = '#060c12';
-        ctx.fillRect(0, 0, cvs.width, cvs.height);
-        ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
+      try{
+        var cvs=document.createElement('canvas');
+        cvs.width=Math.round(w*PX);cvs.height=Math.round(h*PX);
+        var ctx=cvs.getContext('2d');
+        ctx.fillStyle='#060c12';ctx.fillRect(0,0,cvs.width,cvs.height);
+        ctx.drawImage(img,0,0,cvs.width,cvs.height);
         setProgress(88);
-        cvs.toBlob(function(blob) {
-          if (!blob) { onFail('toBlob null'); return; }
-          triggerDownload(URL.createObjectURL(blob), 'Ayungon_HRMS_Flowchart.jpg');
+        cvs.toBlob(function(blob){
+          if(!blob){fail('null blob');return;}
+          triggerDownload(URL.createObjectURL(blob),fn);
           setProgress(100);
-          showToast('✅ JPG downloaded! (' + cvs.width + ' × ' + cvs.height + 'px)');
-          setTimeout(function(){ setProgress(0); }, 1000);
-        }, 'image/jpeg', 0.97);
-      } catch(err) { onFail(err); }
+          showToast('✅ JPG downloaded! ('+cvs.width+' × '+cvs.height+'px)');
+          setTimeout(function(){setProgress(0);},1000);
+        },'image/jpeg',0.97);
+      }catch(err){fail(err);}
     };
-    img.onerror = function() { onFail('load error'); };
-    img.src = src;
+    img.onerror=function(){fail('load error');};
+    img.src=src;
   }
-
-  renderToJPG(dataURI, function(r1) {
-    console.warn('base64 failed:', r1, '— trying blob URL');
-    setProgress(45);
-    try {
-      var blobSvg = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-      var blobURL = URL.createObjectURL(blobSvg);
-      renderToJPG(blobURL, function(r2) {
-        URL.revokeObjectURL(blobURL);
-        console.warn('blob URL also failed:', r2);
-        showToast('⚠️ JPG render failed. Downloading SVG instead.');
-        doDownloadSVG(); setProgress(0);
-      });
-      setTimeout(function(){ URL.revokeObjectURL(blobURL); }, 8000);
-    } catch(e) {
-      showToast('⚠️ JPG failed. Downloading SVG instead.');
-      doDownloadSVG(); setProgress(0);
-    }
+  setProgress(25);
+  render('data:image/svg+xml;base64,'+b64,function(r1){
+    console.warn('base64 failed:',r1);setProgress(45);
+    try{
+      var bl=new Blob([svgStr],{type:'image/svg+xml;charset=utf-8'}),burl=URL.createObjectURL(bl);
+      render(burl,function(r2){URL.revokeObjectURL(burl);showToast('⚠️ JPG failed. SVG downloaded instead.');doDownloadSVG();setProgress(0);});
+      setTimeout(function(){URL.revokeObjectURL(burl);},8000);
+    }catch(e){showToast('⚠️ JPG failed. SVG downloaded instead.');doDownloadSVG();setProgress(0);}
   });
 }
 
-// ═══════════════════════════════════════════════════════
-// UTILS
-// ═══════════════════════════════════════════════════════
-function triggerDownload(url, filename) {
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
-}
-
-function setProgress(pct) {
-  document.getElementById('progressBar').style.width = pct + '%';
-}
-
-// ═══════════════════════════════════════════════════════
-// TOAST
-// ═══════════════════════════════════════════════════════
-var toastTimer;
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3000);
-}
+// ── UTILS ──
+function triggerDownload(url,fn){var a=document.createElement('a');a.href=url;a.download=fn;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(url);},2000);}
+function setProgress(p){document.getElementById('progressBar').style.width=p+'%';}
+var _tt;
+function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(_tt);_tt=setTimeout(function(){t.classList.remove('show');},3200);}
 </script>
 </body>
 </html>
