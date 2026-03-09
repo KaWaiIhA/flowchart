@@ -229,12 +229,7 @@ HAS_ACC -->|Yes| LOGIN[Sign In\nEmail + Password]
 LOGIN --> CREDS{Valid Credentials?}
 CREDS -->|No| LOGIN_ERR[❌ Show Error]
 LOGIN_ERR --> LOGIN
-CREDS -->|Yes| TWO_FA{2FA Enabled?}
-TWO_FA -->|Yes| CODE[Enter 2FA Code]
-CODE --> CODE_OK{Valid?}
-CODE_OK -->|No| CODE
-CODE_OK -->|Yes| CHK_PROF
-TWO_FA -->|No| CHK_PROF
+CREDS -->|Yes| CHK_PROF
 
 %% ── PROFILE SETUP ──
 CHK_PROF{Profile Complete?}
@@ -518,7 +513,7 @@ style LOGIN_ERR fill:#3a0a14,stroke:#f04060,color:#ffb0b8
     <div class="key-icon">🔐</div>
     <div>
       <div class="key-title">Authentication</div>
-      <div class="key-desc">Login with 2FA, register with email verification, 3-step profile setup, then role routing.</div>
+      <div class="key-desc">Login with email & password, register with email verification, 3-step profile setup, then role routing.</div>
     </div>
   </div>
   <div class="key-card">
