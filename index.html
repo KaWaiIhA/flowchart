@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayungon HRMS — Complete System Flowcharts</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+:root{--bg:#080e14;--bg2:#0d1520;--bg3:#111d2b;--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.04);--txt:#e8edf2;--muted:#5a7085;--muted2:#8aa3b8;--green:#00c471;--green2:#009954;--blue:#3b8eff;--purple:#9b6dff;--amber:#f0a500;--red:#f04060;--cyan:#00c8e0;--r:10px;--r2:16px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+.header{position:relative;z-index:10;background:linear-gradient(180deg,#0a1520 0%,var(--bg) 100%);border-bottom:1px solid var(--border);overflow:hidden}
+.header-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:800px;height:300px;background:radial-gradient(ellipse,rgba(0,196,113,.12) 0%,transparent 70%);pointer-events:none}
+.header-inner{max-width:1320px;margin:0 auto;padding:2.5rem 2rem 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+.header-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,196,113,.1);border:1px solid rgba(0,196,113,.25);border-radius:999px;padding:.3rem .9rem;font-size:.72rem;font-weight:600;color:var(--green);letter-spacing:.04em;text-transform:uppercase;margin-bottom:1rem}
+.header-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.header-title{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:800;line-height:1.05;letter-spacing:-.025em}
+.header-title em{font-style:normal;background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-sub{margin-top:.6rem;color:var(--muted2);font-size:.925rem}
+.header-stats{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:flex-end}
+.stat-pill{display:flex;flex-direction:column;align-items:center;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:.75rem 1.25rem;min-width:76px;transition:border-color .2s}
+.stat-pill:hover{border-color:rgba(0,196,113,.3)}
+.stat-n{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--green);line-height:1}
+.stat-l{font-size:.67rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:.25rem;white-space:nowrap}
+.legend-bar{max-width:1320px;margin:0 auto;padding:1rem 2rem;display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
+.legend-bar-label{font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.legend-item{display:flex;align-items:center;gap:.45rem;font-size:.78rem;color:var(--muted2);white-space:nowrap}
+.legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tabnav-wrap{position:sticky;top:0;z-index:100;background:rgba(8,14,20,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.tabnav{max-width:1320px;margin:0 auto;padding:0 2rem;display:flex;overflow-x:auto;scrollbar-width:none}
+.tabnav::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;display:flex;align-items:center;gap:.5rem;padding:.9rem 1.1rem;border:none;border-bottom:2px solid transparent;background:none;color:var(--muted2);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;transition:color .15s,border-color .15s;white-space:nowrap}
+.tab-btn:hover{color:var(--txt)}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green)}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px;background:var(--bg3);font-size:.65rem;font-weight:700;color:var(--muted);transition:background .15s,color .15s}
+.tab-btn.active .tab-num{background:rgba(0,196,113,.15);color:var(--green)}
+.main{max-width:1320px;margin:0 auto;padding:2rem 2rem 4rem;position:relative;z-index:1}
+.section{display:none}
+.section.active{display:block}
+.sec-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:1.75rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border2);flex-wrap:wrap}
+.sec-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.625rem;flex-shrink:0;border:1px solid var(--border)}
+.sec-meta{flex:1;min-width:200px}
+.sec-title{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:-.015em}
+.sec-desc{margin-top:.3rem;font-size:.875rem;color:var(--muted2);line-height:1.5}
+.sec-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.sec-tag{padding:.2rem .65rem;border-radius:999px;font-size:.7rem;font-weight:600;letter-spacing:.02em;border:1px solid var(--border);color:var(--muted2)}
+.info-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.875rem;margin-bottom:1.5rem}
+.info-card{padding:1rem 1.1rem;border-radius:var(--r);border:1px solid var(--border);background:var(--bg3);transition:transform .2s}
+.info-card:hover{transform:translateY(-2px)}
+.ic-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.3rem}
+.ic-val{font-family:'Syne',sans-serif;font-size:.975rem;font-weight:700}
+.diagram-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.diagram-toolbar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.25rem;border-bottom:1px solid var(--border2);gap:1rem}
+.diagram-toolbar-dots{display:flex;gap:.4rem}
+.diagram-toolbar-dots span{width:10px;height:10px;border-radius:50%}
+.diagram-toolbar-title{font-size:.78rem;font-weight:600;color:var(--muted2);font-family:'Syne',sans-serif}
+.diagram-zoom-btns{display:flex;gap:.4rem}
+.zoom-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--muted2);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;font-weight:700;font-family:monospace}
+.zoom-btn:hover{background:var(--border);color:var(--txt)}
+.diagram-body{padding:1.5rem;overflow:auto;min-height:400px;cursor:grab}
+.diagram-body:active{cursor:grabbing}
+.diagram-body::-webkit-scrollbar{width:4px;height:4px}
+.diagram-body::-webkit-scrollbar-track{background:transparent}
+.diagram-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.diagram-body .mermaid{display:flex;justify-content:center}
+.diagram-body .mermaid svg{max-width:100%;height:auto;transition:transform .15s;transform-origin:top center}
+.step-timeline{display:flex;margin-bottom:1.5rem;overflow-x:auto}
+.step-node{flex:1;min-width:130px;display:flex;flex-direction:column;align-items:center;position:relative}
+.step-node::after{content:'→';position:absolute;right:-1px;top:18px;color:var(--muted);font-size:1rem}
+.step-node:last-child::after{display:none}
+.step-circle{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;border:2px solid var(--border);margin-bottom:.5rem}
+.step-name{font-size:.72rem;font-weight:600;color:var(--muted2);text-align:center}
+.step-role{font-size:.65rem;color:var(--muted);text-align:center;margin-top:.1rem}
+footer{text-align:center;padding:2rem 1rem 3rem;border-top:1px solid var(--border2);color:var(--muted);font-size:.78rem;position:relative;z-index:1}
+@media(max-width:768px){.header-inner{grid-template-columns:1fr;gap:1rem}.header-stats{justify-content:flex-start}.main{padding:1.5rem 1rem 3rem}.legend-bar{padding:.75rem 1rem;gap:.75rem}.tabnav{padding:0 1rem}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-glow"></div>
+  <div class="header-inner">
+    <div>
+      <div class="header-badge">System Documentation</div>
+      <h1 class="header-title">Ayungon <em>HRMS</em><br>System Flowcharts</h1>
+      <p class="header-sub">Municipality of Ayungon, Negros Oriental &nbsp;·&nbsp; Complete Process Documentation</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat-pill"><div class="stat-n">10</div><div class="stat-l">Flowcharts</div></div>
+      <div class="stat-pill"><div class="stat-n">5</div><div class="stat-l">User Roles</div></div>
+      <div class="stat-pill"><div class="stat-n">4</div><div class="stat-l">Approval Steps</div></div>
+      <div class="stat-pill"><div class="stat-n">9</div><div class="stat-l">Modules</div></div>
+      <div class="stat-pill"><div class="stat-n">15</div><div class="stat-l">Leave Types</div></div>
+      <div class="stat-pill"><div class="stat-n">12</div><div class="stat-l">Doc Types</div></div>
+    </div>
+  </div>
+  <div class="legend-bar">
+    <span class="legend-bar-label">Color Legend</span>
+    <div class="legend-item"><div class="legend-dot" style="background:#00c471;box-shadow:0 0 6px #00c47155"></div>Start / Dashboard / Success</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3b8eff;box-shadow:0 0 6px #3b8eff55"></div>Step 1 — Dept Head</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#9b6dff;box-shadow:0 0 6px #9b6dff55"></div>Step 2 — HRMO</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f0a500;box-shadow:0 0 6px #f0a50055"></div>Step 3 & 4 — Admin / Mayor</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f04060;box-shadow:0 0 6px #f0406055"></div>Rejected / Error</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>Decision ◇</div>
+  </div>
+</header>
+
+<div class="tabnav-wrap">
+  <nav class="tabnav">
+    <button class="tab-btn active" onclick="showTab('auth')"       data-tab="auth">      <span class="tab-num">1</span>🔐 Authentication</button>
+    <button class="tab-btn"        onclick="showTab('admin')"      data-tab="admin">     <span class="tab-num">2</span>👑 Admin</button>
+    <button class="tab-btn"        onclick="showTab('employee')"   data-tab="employee">  <span class="tab-num">3</span>👤 Employee</button>
+    <button class="tab-btn"        onclick="showTab('depthead')"   data-tab="depthead">  <span class="tab-num">4</span>🏢 Dept Head</button>
+    <button class="tab-btn"        onclick="showTab('hrmo')"       data-tab="hrmo">      <span class="tab-num">5</span>🏥 HRMO</button>
+    <button class="tab-btn"        onclick="showTab('mayor')"      data-tab="mayor">     <span class="tab-num">6</span>👔 Mayor</button>
+    <button class="tab-btn"        onclick="showTab('leaveflow')"  data-tab="leaveflow"> <span class="tab-num">7</span>📋 Leave Approval</button>
+    <button class="tab-btn"        onclick="showTab('attendance')" data-tab="attendance"><span class="tab-num">8</span>📊 Attendance</button>
+    <button class="tab-btn"        onclick="showTab('pds')"        data-tab="pds">       <span class="tab-num">9</span>📄 PDS</button>
+    <button class="tab-btn"        onclick="showTab('dataflow')"   data-tab="dataflow">  <span class="tab-num">10</span>🌐 Data Flow</button>
+  </nav>
+</div>
+
+<main class="main">
+
+<!-- 1. AUTH -->
+<div class="section active" id="tab-auth">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(0,196,113,.08)">🔐</div>
+    <div class="sec-meta">
+      <div class="sec-title">Authentication &amp; Registration Flow</div>
+      <div class="sec-desc">Login with 2FA, new account registration with email verification, 3-step profile setup (Personal → Employment → Documents), then role-based routing to the correct dashboard.</div>
+      <div class="sec-tags"><span class="sec-tag">Login / Register</span><span class="sec-tag">2FA</span><span class="sec-tag">Email Verification</span><span class="sec-tag">3-Step Profile</span><span class="sec-tag">Role Routing</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">01 — Authentication &amp; Registration Flow</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('auth',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('auth',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('auth')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-auth">
+      <div class="mermaid" id="diag-auth">
+flowchart TD
+    A([User Visits System]) --> B[Landing Page\nBante Ayungon]
+    B --> C{Has Account?}
+    C -->|Yes| D[Sign In\nEmail + Password]
+    C -->|No| E[Sign Up\nRegister]
+    D --> F{Valid Credentials?}
+    F -->|No| G[Show Error]
+    G --> D
+    F -->|Yes| H{2FA Enabled?}
+    H -->|Yes| I[Enter 2FA Code]
+    H -->|No| K
+    I --> J{Code Valid?}
+    J -->|No| I
+    J -->|Yes| K
+    E --> L[Create Account\nEmail · Password · Name]
+    L --> M{Email Verified?}
+    M -->|No| N[Send Verification Email]
+    N --> M
+    M -->|Yes| K
+    K{Profile Complete?}
+    K -->|No| P1[STEP 1\nPersonal Info]
+    K -->|Yes| R
+    P1 --> P1f[Employee ID · Name · Contact\nDOB · Gender · Marital Status · Address]
+    P1f --> P1s[Save & Continue]
+    P1s --> P2[STEP 2\nEmployment Details]
+    P2 --> P2f[Position · Department\nSalary Grade · Type · Hire Date]
+    P2f --> P2s[Save & Continue]
+    P2s --> P3[STEP 3\nDocuments Upload]
+    P3 --> P3f[201 FILE — 5 docs\nSALN — 1 doc\nOTHER FILES — 6 docs]
+    P3f --> DC{Upload Now?}
+    DC -->|Skip| SK[Mark Skipped\nReminder next login]
+    DC -->|Upload| UD[Submit Documents]
+    SK --> R
+    UD --> R
+    R{User Role?}
+    R -->|Admin| AD[Admin Dashboard]
+    R -->|Employee| ED[Employee Dashboard]
+    R -->|Dept Head| DH[Dept Head Flow]
+    R -->|HRMO| HD[HRMO Dashboard]
+    R -->|Mayor| MD[Mayor Dashboard]
+    DH --> PA{Pending Approvals?}
+    PA -->|Yes| SQ[Show Leave Queue\nStep 1 Recommend]
+    PA -->|No| ED
+    SQ --> DR{Done Reviewing?}
+    DR -->|No| SQ
+    DR -->|Yes| ED
+    style A fill:#00c471,stroke:#009954,color:#000
+    style R fill:#f0a500,stroke:#d97706,color:#000
+    style AD fill:#00c471,stroke:#009954,color:#000
+    style ED fill:#00c471,stroke:#009954,color:#000
+    style HD fill:#9b6dff,stroke:#7c3aed,color:#fff
+    style MD fill:#f0a500,stroke:#d97706,color:#000
+    style P1 fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style P2 fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style P3 fill:#1e3a5f,stroke:#3b8eff,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. ADMIN -->
+<div class="section" id="tab-admin">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(240,165,0,.08)">👑</div>
+    <div class="sec-meta">
+      <div class="sec-title">Admin Module Flowchart</div>
+      <div class="sec-desc">Full admin navigation: Employee Management, Departments (6), Leave Approval Step 3, Announcements, Calendar Events, Attendance Upload & Export, User Management, and Security Audit Log.</div>
+      <div class="sec-tags"><span class="sec-tag">Employee Mgmt</span><span class="sec-tag">Departments</span><span class="sec-tag">Leave Step 3</span><span class="sec-tag">Attendance</span><span class="sec-tag">User Mgmt</span><span class="sec-tag">Audit Log</span></div>
+    </div>
+  </div>
+  <div class="info-row">
+    <div class="info-card" style="border-color:rgba(0,196,113,.2)"><div class="ic-label">Employees</div><div class="ic-val" style="color:var(--green)">11 Tracked</div></div>
+    <div class="info-card" style="border-color:rgba(59,142,255,.2)"><div class="ic-label">Departments</div><div class="ic-val" style="color:var(--blue)">6 Active</div></div>
+    <div class="info-card" style="border-color:rgba(240,165,0,.2)"><div class="ic-label">Leave Requests</div><div class="ic-val" style="color:var(--amber)">9 · 6 Approved</div></div>
+    <div class="info-card" style="border-color:rgba(155,109,255,.2)"><div class="ic-label">Total Users</div><div class="ic-val" style="color:var(--purple)">12 Users</div></div>
+    <div class="info-card" style="border-color:rgba(240,64,96,.2)"><div class="ic-label">Pending</div><div class="ic-val" style="color:var(--red)">1 Queue</div></div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">02 — Admin Module Flowchart</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('admin',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('admin',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('admin')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-admin">
+      <div class="mermaid" id="diag-admin">
+flowchart TD
+    AL([Admin Logs In]) --> AD[Admin Dashboard\nEmployees: 11 · Depts: 6 · Pending: 1\nCharts & Analytics]
+    AD --> AN{Select Navigation}
+    AN -->|Employee Mgmt| EM[Employee Management]
+    EM --> EA{Action?}
+    EA -->|Search or Filter| SE[Search by ID / Name / Dept\nFilter by Dept or Status]
+    EA -->|View| VE[Employee Modal\n4 Tabs: Personal · Address\nEmployment · Documents]
+    EA -->|Change Status| US[6 Status Options\nActive · Inactive · On Leave\nRetired · Resigned · Terminated]
+    AN -->|Departments| DV[Departments\nAccounting · Agriculture · DEPED\nGSO · KALAHI · Treasury]
+    DV --> DA{Action?}
+    DA -->|View Members| VM[View All Members in Dept]
+    VM --> MA{Member Action?}
+    MA -->|View| MM[4-Tab Employee Modal]
+    MA -->|Edit| EM2[Edit Member Info]
+    MA -->|Status| SM[Update Status]
+    AN -->|Leave Approval| LA[Leave Management\n9 Total · 3 In Progress · 6 Approved]
+    LA --> LT[Leave Requests Table]
+    LT --> LAC{Action?}
+    LAC -->|Filter| FL[By Dept · Status · Type · Year]
+    LAC -->|View PDF| VP[View Leave Form PDF]
+    LAC -->|Credits| VC[View Employee Credits Drawer]
+    LAC -->|Approve| APR[Approve — Forward to Mayor Step 4]
+    LAC -->|Reject| REJ[Reject — Enter Reason]
+    AN -->|Announcements| AP[Announcements]
+    AP --> AAC{Action?}
+    AAC -->|Create| CP[New Post: Text + Image\nBackground Color + Location Tag]
+    AAC -->|Edit or Delete| MP[Manage Own Posts]
+    AAC -->|Message| OC[Open Chat Panel]
+    AN -->|Calendar| CP2[Calendar Events\nMonthly Grid View]
+    CP2 --> CA{Action?}
+    CA -->|View| VC2[Hover Tooltips + Event Bars]
+    CA -->|Add Event| AE[Title + Date\nType: Task · Reminder · Holiday]
+    CA -->|Edit or Delete| ME[Manage Events]
+    AN -->|Attendance| ATP[Attendance Management]
+    ATP --> ATA{Action?}
+    ATA -->|Upload| UB[Upload Biometrics\nTXT · XLSX · XLS · CSV · Max 20MB]
+    UB --> PF[Parse · Match IDs · Calculate Stats]
+    PF --> SA2[Save to DB · Show Success]
+    ATA -->|View Records| VAR[Employee Records Table\nFilter + Daily Calendar View]
+    ATA -->|Export DTR| ED2[Export XLSX: Single or All Employees]
+    AN -->|User Mgmt| UM[User Management\n12 Users]
+    UM --> UA{Action?}
+    UA -->|Create| CU[Create User: Select Employee\nAssign Role + Dept]
+    UA -->|Edit Role| ER[Change User Role]
+    UA -->|Search or Filter| SU[Search / Filter by Role]
+    AN -->|Audit Log| ALP[Audit Log\nDefaults to Today]
+    ALP --> AV[Logins · Failed · Blocked · Unique IPs]
+    AV --> AF[Filter by Date · Action · User · IP]
+    AN -->|Logout| LG[Logout — Logged in Audit]
+    style AD fill:#00c471,stroke:#009954,color:#000
+    style LA fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style UM fill:#2d1f5e,stroke:#9b6dff,color:#fff
+    style ALP fill:#4a0f1a,stroke:#f04060,color:#fff
+    style ATP fill:#0a2a35,stroke:#00c8e0,color:#fff
+    style APR fill:#164030,stroke:#00c471,color:#fff
+    style REJ fill:#4a0f1a,stroke:#f04060,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. EMPLOYEE -->
+<div class="section" id="tab-employee">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(0,196,113,.08)">👤</div>
+    <div class="sec-meta">
+      <div class="sec-title">Employee Module Flowchart</div>
+      <div class="sec-desc">Dashboard, My Profile (3 tabs), Leave Request history with status-driven 3-dot actions (Pending: Edit+ViewPDF · In Progress: ViewPDF · Approved: View+Download+Print), PDS, Announcements, Calendar, and Attendance with DTR download.</div>
+      <div class="sec-tags"><span class="sec-tag">Dashboard</span><span class="sec-tag">My Profile</span><span class="sec-tag">15 Leave Types</span><span class="sec-tag">Status-Based 3-dot Menu</span><span class="sec-tag">PDS CS Form 212</span><span class="sec-tag">Attendance + DTR</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">03 — Employee Module Flowchart</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('employee',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('employee',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('employee')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-employee">
+      <div class="mermaid" id="diag-employee">
+flowchart TD
+    EL([Employee Logs In]) --> CD{Documents Uploaded?}
+    CD -->|No| SR[Reminder: Complete Your Profile]
+    SR --> RC{Action?}
+    RC -->|Upload Now| G3[Go to Step 3 Upload]
+    RC -->|Later| ED
+    G3 --> ED
+    CD -->|Yes| ED
+    ED[Employee Dashboard] --> EN{Select Navigation}
+    EN -->|Dashboard| VD[Profile Snapshot\nLeave Credits 2026\nLeave Form Card · PDS Card]
+    EN -->|My Profile| PP[My Profile]
+    PP --> PT{Tab?}
+    PT -->|Personal| VP[Employee ID · Name · Contact\nDOB · Gender · Marital Status]
+    PT -->|Employment| VE[Position · Dept · Salary Grade\nHire Date · Status]
+    PT -->|Documents| VDC[201 FILE · SALN · OTHER FILES]
+    VDC --> DA{Action?}
+    DA -->|Download| DLD[Download Document]
+    DA -->|Re-upload| RU[Re-upload Document]
+    EN -->|Leave Request| LH[Leave Request History]
+    LH --> LM{3-dot Menu — by Status}
+    LM -->|Pending| PO[Edit Request\nView PDF]
+    LM -->|In Progress| IO[View PDF only]
+    LM -->|Mayor Approved| AO[View PDF · Download · Print]
+    LH --> NL[New Leave Request Button]
+    NL --> SL[Select Leave Type\n15 Types Available]
+    SL --> EP[Enter Period:\nStart Date · End Date · Days · Optional Time]
+    EP --> BC{Sufficient Credits?}
+    BC -->|No| CE[Error: Insufficient Credits\nSubmit Disabled]
+    BC -->|Yes| SUB[Submit Leave Request]
+    SUB --> LS[Status: PENDING\nNotify Dept Head Step 1]
+    EN -->|PDS| PDS[Personal Data Sheet\nCS Form No. 212]
+    PDS --> PA{Action?}
+    PA -->|Edit| EP2[Edit 4 Pages]
+    PA -->|Preview| PV[Full Screen + Zoom]
+    PA -->|Download| DL2[CS_Form_212_Name_Date.pdf]
+    PA -->|Print| PR[Legal 8.5x13 · Margins: None]
+    EN -->|Announcements| ANP[View & Like Posts\nOpen Messages Chat]
+    EN -->|Calendar| CAL[Monthly Calendar\nTasks · Reminders · Holidays]
+    EN -->|Attendance| ATT[My Attendance]
+    ATT --> AC[Identity Card + Stats\nPresent · Absent · Undertime · Rate %]
+    AC --> ACH[Charts: Weekly Line\nDonut Summary · Calendar View]
+    ACH --> DTR[Download DTR Modal\nSingle Month or Full Year XLSX]
+    style ED fill:#00c471,stroke:#009954,color:#000
+    style LS fill:#00c471,stroke:#009954,color:#000
+    style PDS fill:#2d1f5e,stroke:#9b6dff,color:#fff
+    style PO fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style AO fill:#164030,stroke:#00c471,color:#fff
+    style CE fill:#4a0f1a,stroke:#f04060,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. DEPT HEAD -->
+<div class="section" id="tab-depthead">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(59,142,255,.08)">🏢</div>
+    <div class="sec-meta">
+      <div class="sec-title">Department Head Workflow</div>
+      <div class="sec-desc">Step 1 of 4. Reviews department's pending leave requests — can Recommend (forwards to HRMO), Not Recommend (reject), or Request More Info. Checks employee info, leave balance, reason, and supporting docs. Also has all Employee-role features.</div>
+      <div class="sec-tags"><span class="sec-tag">Step 1 of 4</span><span class="sec-tag">Leave Recommendation</span><span class="sec-tag">Forward to HRMO</span><span class="sec-tag">Employee Features Included</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">04 — Department Head Workflow (Step 1/4)</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('depthead',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('depthead',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('depthead')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-depthead">
+      <div class="mermaid" id="diag-depthead">
+flowchart TD
+    DL([Dept Head Logs In]) --> CP{Pending Leave Requests?}
+    CP -->|Yes| SQ[Leave Approval Queue\nStep 1: Recommendation]
+    CP -->|No| DD
+    SQ --> RQ[Review: Employee · Dept\nLeave Type · Period · Days]
+    RQ --> DA{Action?}
+    DA -->|Review| OR[Open Request Details]
+    OR --> CD[Check: Employee Info\nLeave Balance · Reason · Docs]
+    CD --> DC{Decision?}
+    DC -->|Recommend| DR[STEP 1 — RECOMMEND\nAdd recommendation note]
+    DR --> FH[Forward to HRMO Step 2]
+    FH --> NH[Notify HRMO via System Alert]
+    NH --> US[Status: Pending → Dept Head Approved]
+    DC -->|Not Recommend| NR[NOT RECOMMEND\nEnter rejection reason]
+    NR --> RS[Reject at Step 1]
+    RS --> NE[Notify Employee: Rejected by Dept Head]
+    DC -->|Request Info| RI[Request More Info from Employee]
+    RI --> SQ
+    DA -->|Skip for Now| DD
+    US --> CM{More Requests?}
+    NE --> CM
+    CM -->|Yes| SQ
+    CM -->|No| DD
+    DD[Dept Head Dashboard] --> DN{Navigation}
+    DN -->|Leave Approval| SQ
+    DN -->|My Leave Requests| DL2[Submit Own Leaves\n3-dot Menu by Status]
+    DN -->|My Profile| DP[Profile — 3 Tabs]
+    DN -->|PDS| DPDS[My Personal Data Sheet]
+    DN -->|Announcements| DA2[View & Like · Messages]
+    DN -->|Calendar| DC2[View Only]
+    DN -->|Attendance| DA3[My Attendance + DTR Download]
+    DN -->|Logout| LG[Logout]
+    style DD fill:#00c471,stroke:#009954,color:#000
+    style SQ fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style DR fill:#164030,stroke:#00c471,color:#fff
+    style NR fill:#4a0f1a,stroke:#f04060,color:#fff
+    style US fill:#1e3a5f,stroke:#3b8eff,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. HRMO -->
+<div class="section" id="tab-hrmo">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(155,109,255,.08)">🏥</div>
+    <div class="sec-meta">
+      <div class="sec-title">HRMO Workflow</div>
+      <div class="sec-desc">Step 2 of 4. Sees only Dept-Head-Approved requests. Checks leave rules compliance, Dept Head recommendation, and supporting documents. Can Approve (forwards to Admin), Reject, Return to Dept Head, or Request More Info. Has read access to all employee records.</div>
+      <div class="sec-tags"><span class="sec-tag">Step 2 of 4</span><span class="sec-tag">Leave Rules Compliance</span><span class="sec-tag">Forward to Admin</span><span class="sec-tag">All Records Access</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">05 — HRMO Workflow (Step 2/4)</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('hrmo',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('hrmo',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('hrmo')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-hrmo">
+      <div class="mermaid" id="diag-hrmo">
+flowchart TD
+    HL([HRMO Logs In]) --> HD[HRMO Dashboard]
+    HD --> HN{Select Module}
+    HN -->|Leave Approval| HQ[Leave Approval Queue — Step 2\nFilter: Dept Head Approved only]
+    HQ --> VR[View: Employee · Dept · Type · Days\nDept Head Notes]
+    VR --> HA{Action?}
+    HA -->|Review| OR[Open Request Details]
+    OR --> CD[Check: Leave Balance\nDept Head Recommendation\nDocs · Leave Rules Compliance]
+    CD --> HD2{Decision?}
+    HD2 -->|Approve| HA2[STEP 2 — APPROVE\nAdd review notes]
+    HA2 --> FA[Forward to Admin Step 3]
+    FA --> NA[Notify Admin via System Alert]
+    NA --> US[Status: Dept Head → HRMO Approved]
+    HD2 -->|Reject| HR[Reject at Step 2\nEnter rejection reason]
+    HR --> NE[Notify Employee: Rejected by HRMO]
+    HD2 -->|Return to Dept| RD[Return to Dept Head\nRequest clarification]
+    RD --> ND[Notify Dept Head: Returned]
+    HD2 -->|Request Info| RI[Request Info from Employee]
+    RI --> HQ
+    US --> CM{More Requests?}
+    NE --> CM
+    ND --> CM
+    CM -->|Yes| HQ
+    CM -->|No| HD
+    HN -->|Employee Records| AR[All Employee Records\nRead-Only Access]
+    HN -->|My Leave Requests| HL2[Submit Own Leaves]
+    HN -->|My Profile| HP[Profile — 3 Tabs]
+    HN -->|PDS| HPDS[My PDS]
+    HN -->|Attendance| HA3[My Attendance + DTR]
+    HN -->|Logout| LG[Logout]
+    style HD fill:#00c471,stroke:#009954,color:#000
+    style HQ fill:#2d1f5e,stroke:#9b6dff,color:#fff
+    style HA2 fill:#164030,stroke:#00c471,color:#fff
+    style HR fill:#4a0f1a,stroke:#f04060,color:#fff
+    style US fill:#2d1f5e,stroke:#9b6dff,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. MAYOR -->
+<div class="section" id="tab-mayor">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(240,165,0,.08)">👔</div>
+    <div class="sec-meta">
+      <div class="sec-title">Mayor Workflow</div>
+      <div class="sec-desc">Step 4 — the final authority. Reviews the complete 4-step approval trail. Upon final approval: system generates an official Leave Form PDF with all 4 approvals and signatures, deducts leave credits, and notifies all parties.</div>
+      <div class="sec-tags"><span class="sec-tag">Step 4 of 4 — Final</span><span class="sec-tag">Official PDF Generation</span><span class="sec-tag">Credit Deduction</span><span class="sec-tag">Notify All Parties</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">06 — Mayor Workflow (Step 4/4 — Final)</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('mayor',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('mayor',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('mayor')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-mayor">
+      <div class="mermaid" id="diag-mayor">
+flowchart TD
+    ML([Mayor Logs In]) --> MD[Mayor Dashboard\nHigh-level Overview]
+    MD --> MN{Select Module}
+    MN -->|Leave Approval| MQ[Leave Approval Queue — Step 4\nFilter: Admin Approved · Awaiting Mayor]
+    MQ --> VR[View Requests with Full Approval Trail:\nEmployee · Dept · Type · Days · All Notes]
+    VR --> MA{Action?}
+    MA -->|Review| OR[Open Full Request Details]
+    OR --> CD[Complete Trail:\nDept Head Recommendation\nHRMO Review · Admin Approval\nAll Notes & Documents]
+    CD --> MD2{Final Decision?}
+    MD2 -->|Approve| MA2[STEP 4 — FINAL APPROVE\nAdd signature and notes]
+    MA2 --> FR[Finalize Request]
+    FR --> GL[Generate Official Leave Form PDF\nWith All 4 Approvals & Signatures]
+    GL --> US[Status: Admin → APPROVED FINAL]
+    US --> DC[Deduct Leave Credits from Balance]
+    DC --> NA[Notify: Employee · Dept Head · HRMO · Admin]
+    NA --> SD[Send Approved PDF to Employee]
+    SD --> LA[Log Approval in Audit Trail]
+    MD2 -->|Reject| MR[Final Rejection\nEnter reason]
+    MR --> NR[Notify All Parties: Rejected by Mayor]
+    MD2 -->|Return to Admin| RA[Return to Admin for Review]
+    RA --> NA2[Notify Admin: Returned by Mayor]
+    SD --> CM{More Requests?}
+    NR --> CM
+    NA2 --> CM
+    CM -->|Yes| MQ
+    CM -->|No| MD
+    MN -->|Reports| VRP[Leave Analytics · Dept Stats\nAttendance Summary]
+    MN -->|Employees| VAE[All Employees — Read-only]
+    MN -->|Announcements| MAN[View & Post Announcements]
+    MN -->|Calendar| MC[View All Events]
+    MN -->|Logout| LG[Logout]
+    style MD fill:#00c471,stroke:#009954,color:#000
+    style MQ fill:#3d2a00,stroke:#f0a500,color:#fff
+    style MA2 fill:#164030,stroke:#00c471,color:#fff
+    style MR fill:#4a0f1a,stroke:#f04060,color:#fff
+    style GL fill:#00c471,stroke:#009954,color:#000
+    style SD fill:#164030,stroke:#00c471,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. LEAVE FLOW -->
+<div class="section" id="tab-leaveflow">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(0,196,113,.08)">📋</div>
+    <div class="sec-meta">
+      <div class="sec-title">Complete Leave Approval Workflow</div>
+      <div class="sec-desc">Full 4-step pipeline from submission to final approval. Each step can approve, reject, return, or request info. 7-day auto-reject timeout. Approved requests generate an official signed PDF and deduct credits.</div>
+      <div class="sec-tags"><span class="sec-tag">Auto Control # LV-2026-0009</span><span class="sec-tag">4-Step Pipeline</span><span class="sec-tag">7-Day Timeout</span><span class="sec-tag">PDF with 4 Signatures</span><span class="sec-tag">Credit Deduction</span></div>
+    </div>
+  </div>
+  <div class="step-timeline">
+    <div class="step-node"><div class="step-circle" style="background:rgba(0,196,113,.12);border-color:#00c471;color:#00c471">E</div><div class="step-name">Employee</div><div class="step-role">Submits</div></div>
+    <div class="step-node"><div class="step-circle" style="background:rgba(59,142,255,.12);border-color:#3b8eff;color:#3b8eff">1</div><div class="step-name">Dept Head</div><div class="step-role">Recommend</div></div>
+    <div class="step-node"><div class="step-circle" style="background:rgba(155,109,255,.12);border-color:#9b6dff;color:#9b6dff">2</div><div class="step-name">HRMO</div><div class="step-role">Review</div></div>
+    <div class="step-node"><div class="step-circle" style="background:rgba(240,165,0,.12);border-color:#f0a500;color:#f0a500">3</div><div class="step-name">Admin</div><div class="step-role">Approve</div></div>
+    <div class="step-node"><div class="step-circle" style="background:rgba(240,165,0,.12);border-color:#f0a500;color:#f0a500">4</div><div class="step-name">Mayor</div><div class="step-role">Final</div></div>
+    <div class="step-node"><div class="step-circle" style="background:rgba(0,196,113,.2);border-color:#00c471;color:#00c471">✓</div><div class="step-name">Approved</div><div class="step-role">PDF Sent</div></div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">07 — Complete Leave Approval Workflow (4 Steps)</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('leaveflow',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('leaveflow',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('leaveflow')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-leaveflow">
+      <div class="mermaid" id="diag-leaveflow">
+flowchart TD
+    S([Employee Submits Leave Request]) --> VF{Form Complete?}
+    VF -->|No| SE[Show Validation Errors]
+    SE --> S
+    VF -->|Yes| CC{Sufficient Credits?}
+    CC -->|No| SC[Error: Insufficient Credits\nSubmit Button Disabled]
+    SC --> S
+    CC -->|Yes| CR[Create Request\nGenerate Control Number e.g. LV-2026-0009]
+    CR --> SP[Status: PENDING]
+    SP --> DB[Save to Database]
+    DB --> ND[Notify Dept Head\nEmail + System Alert]
+    ND --> ST1[STEP 1 — DEPARTMENT HEAD]
+    ST1 --> DR{Dept Head Decision?}
+    DR -->|Recommend| DA[Recommend + Add Notes]
+    DA --> U1[Status: PENDING → DEPT HEAD APPROVED\nNotify HRMO]
+    DR -->|Not Recommend| DRJ[Reject + Enter Reason]
+    DRJ --> E1([END — Rejected at Step 1])
+    DR -->|Request Info| DI[Request Info from Employee]
+    DI --> W1{Employee Responds?}
+    W1 -->|Yes| ST1
+    W1 -->|7-Day Timeout| E1
+    U1 --> ST2[STEP 2 — HRMO REVIEW]
+    ST2 --> HR{HRMO Decision?}
+    HR -->|Approve| HA[HRMO Approves + Notes]
+    HA --> U2[Status: DEPT HEAD → HRMO APPROVED\nNotify Admin]
+    HR -->|Reject| HRJ[Reject + Enter Reason]
+    HRJ --> E2([END — Rejected at Step 2])
+    HR -->|Return to Dept| HRT[Return to Dept Head]
+    HRT --> ST1
+    HR -->|Request Info| HI[Request Info from Employee]
+    HI --> W2{Employee Responds?}
+    W2 -->|Yes| ST2
+    W2 -->|7-Day Timeout| E2
+    U2 --> ST3[STEP 3 — ADMIN APPROVAL]
+    ST3 --> AR{Admin Decision?}
+    AR -->|Approve| AA[Admin Approves + Notes]
+    AA --> U3[Status: HRMO → ADMIN APPROVED\nNotify Mayor]
+    AR -->|Reject| ARJ[Reject + Reason]
+    ARJ --> E3([END — Rejected at Step 3])
+    AR -->|Return to HRMO| ART[Return to HRMO]
+    ART --> ST2
+    U3 --> ST4[STEP 4 — MAYOR FINAL APPROVAL]
+    ST4 --> MR{Mayor Decision?}
+    MR -->|Final Approve| MA[Mayor Signs & Approves]
+    MA --> U4[Status: ADMIN → APPROVED FINAL]
+    U4 --> DC[Deduct Leave Credits]
+    DC --> GP[Generate Official Leave Form PDF\nWith All 4 Approvals & Signatures]
+    GP --> NA[Notify: Employee · Dept Head · HRMO · Admin]
+    NA --> LA[Log in Audit Trail]
+    LA --> ES([END — APPROVED ✓ PDF Sent to Employee])
+    MR -->|Reject| MRJ[Final Rejection + Reason]
+    MRJ --> E4([END — Rejected at Step 4])
+    MR -->|Return to Admin| MRT[Return to Admin]
+    MRT --> ST3
+    style S fill:#00c471,stroke:#009954,color:#000
+    style ST1 fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style ST2 fill:#2d1f5e,stroke:#9b6dff,color:#fff
+    style ST3 fill:#3d2a00,stroke:#f0a500,color:#fff
+    style ST4 fill:#3d2a00,stroke:#f0a500,color:#fff
+    style ES fill:#00c471,stroke:#009954,color:#000
+    style GP fill:#164030,stroke:#00c471,color:#fff
+    style E1 fill:#4a0f1a,stroke:#f04060,color:#fff
+    style E2 fill:#4a0f1a,stroke:#f04060,color:#fff
+    style E3 fill:#4a0f1a,stroke:#f04060,color:#fff
+    style E4 fill:#4a0f1a,stroke:#f04060,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. ATTENDANCE -->
+<div class="section" id="tab-attendance">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(0,200,224,.08)">📊</div>
+    <div class="sec-meta">
+      <div class="sec-title">Attendance System Workflow</div>
+      <div class="sec-desc">Admin uploads biometric files (TXT/XLSX/XLS/CSV, max 20MB) which are parsed, matched to employee IDs, and stats calculated. Admin views records and exports DTR. Employees see their own attendance card, charts (line/donut/calendar), daily log, and can download DTR XLSX.</div>
+      <div class="sec-tags"><span class="sec-tag">Biometric Upload</span><span class="sec-tag">4 File Formats</span><span class="sec-tag">Present/Absent/Undertime Calc</span><span class="sec-tag">DTR XLSX Export</span><span class="sec-tag">3 Chart Types</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">08 — Attendance System Workflow</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('attendance',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('attendance',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('attendance')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-attendance">
+      <div class="mermaid" id="diag-attendance">
+flowchart TD
+    S([Attendance Management]) --> RV{User Role?}
+    RV -->|Admin| AA[Admin Attendance Page]
+    RV -->|Employee| EA[Employee Attendance Page]
+    AA --> AO{Action?}
+    AO -->|Upload Biometrics| UB[Upload File\nTXT · XLSX · XLS · CSV · Max 20MB]
+    UB --> UM{Upload Method?}
+    UM -->|Drag & Drop| DD[Drop in Zone]
+    UM -->|Browse| BR[Select from File System]
+    DD --> VF{File Valid?}
+    BR --> VF
+    VF -->|No| FE[Error: Invalid Format\nToo Large · Corrupted]
+    FE --> UB
+    VF -->|Yes| PB[Parse Biometric Data\nExtract Timestamps · Match Employee IDs]
+    PB --> CS[Calculate Per Employee:\nPresent Days · Absent Days\nUndertime · Late · Early Out]
+    CS --> SV[Save to Database\n4-Step Progress Indicator]
+    SV --> SS[Success: Records Merged\nUpdate Dashboard Stats]
+    AO -->|View Records| VR[Employee Records Table]
+    VR --> FA[Filter: Name · ID · Month · Year\nDept · Status]
+    FA --> DR[Display: Employee · Dept · Present · Absent\nRate % · Daily Calendar View]
+    DR --> RA{3-dot Action?}
+    RA -->|View Detail| VD[Daily AM/PM Time Log]
+    RA -->|Export DTR| ED[Export Single Month XLSX\nDTR_Name_Month_Year.xlsx]
+    RA -->|All Months| AM[Export All 12 Months XLSX\nDTR_Name_Year_AllMonths.xlsx]
+    AO -->|Export All| EAL[Export All Employees\nFor Selected Month]
+    EA --> EC[Identity Card:\nName · ID · Position · Dept\nMonth · Attendance Rate %]
+    EC --> ES[Stats: Present · Absent\nUndertime · Working Days · Rate %]
+    ES --> ECH[Charts:\n1 Weekly Pattern Line\n2 Month Summary Donut\n3 Interactive Calendar]
+    ECH --> EL[Daily Log:\nDate · Day · AM · PM\nTotal Hours · Undertime · Status]
+    EL --> EAC{Action?}
+    EAC -->|Filter| EF[Filter Month · Year · Status]
+    EF --> EL
+    EAC -->|Download DTR| DM[Download DTR Modal]
+    DM --> DT{Type?}
+    DT -->|Single Month| SM[Select Month + Year → Generate XLSX]
+    DT -->|Full Year| FY[Select Year → 12 Sheets XLSX]
+    style AA fill:#00c471,stroke:#009954,color:#000
+    style EA fill:#00c471,stroke:#009954,color:#000
+    style PB fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style SM fill:#164030,stroke:#00c471,color:#fff
+    style FY fill:#164030,stroke:#00c471,color:#fff
+    style FE fill:#4a0f1a,stroke:#f04060,color:#fff
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. PDS -->
+<div class="section" id="tab-pds">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(155,109,255,.08)">📄</div>
+    <div class="sec-meta">
+      <div class="sec-title">Personal Data Sheet (PDS) Workflow</div>
+      <div class="sec-desc">CS Form No. 212 — official government employee information form. 4 pages: Personal & Family Background, Education & Eligibility, Work Experience & Training, Declarations. Supports inline editing, full-screen preview with zoom, PDF download, and print (Legal 8.5×13).</div>
+      <div class="sec-tags"><span class="sec-tag">CS Form No. 212</span><span class="sec-tag">4 Pages</span><span class="sec-tag">Preview + Zoom</span><span class="sec-tag">PDF Download</span><span class="sec-tag">Print Legal 8.5×13</span><span class="sec-tag">Notify HR on Submit</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">09 — Personal Data Sheet (PDS) Workflow</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('pds',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('pds',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('pds')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-pds">
+      <div class="mermaid" id="diag-pds">
+flowchart TD
+    S([Employee Accesses PDS]) --> CE{PDS Exists?}
+    CE -->|No| CN[Create New PDS\nCS Form No. 212]
+    CE -->|Yes| VP[View Existing PDS]
+    CN --> P1[PAGE 1\nPersonal & Family Background]
+    P1 --> F1[Full Name · DOB · Place of Birth · Sex\nCivil Status · Height · Weight · Blood Type\nGSIS · PAG-IBIG · PhilHealth · SSS · TIN\nCitizenship · Residential & Permanent Address\nTelephone · Mobile · Email\nSpouse · Father · Mother · Children]
+    F1 --> S1[Save Page 1]
+    S1 --> P2[PAGE 2\nEducation & Eligibility]
+    P2 --> F2[EDUCATION:\nElementary · Secondary · Vocational\nCollege · Graduate Studies\nELIGIBILITY:\nCivil Service · RA 1080\nProfessional License · Rating · Date · Place]
+    F2 --> S2[Save Page 2]
+    S2 --> P3[PAGE 3\nWork Experience & Training]
+    P3 --> F3[WORK EXPERIENCE:\nDate From-To · Position Title\nDept or Agency · Monthly Salary\nSalary Grade · Appointment Status · Gov't Y/N\nLEARNING & DEVELOPMENT:\nTraining Title · Date · Hours · Type · Conducted By]
+    F3 --> S3[Save Page 3]
+    S3 --> P4[PAGE 4\nOther Info & Declarations]
+    P4 --> F4[Special Skills & Hobbies\nNon-academic Distinctions · Associations\nDECLARATIONS 1-10:\nCriminal · Convictions · Admin Offenses\nResignation · Elections · Campaign Ban\nImmigrant · Indigenous · PWD · Solo Parent\n3 Character References\nOath: Truth Affirmation · Date · Signature]
+    F4 --> RV{Review Complete?}
+    RV -->|Need to Edit| SP{Which Page?}
+    SP -->|1| P1
+    SP -->|2| P2
+    SP -->|3| P3
+    SP -->|4| P4
+    RV -->|Yes| SB[Submit PDS]
+    SB --> GP[Generate PDF Preview\nCS Form No. 212 Official Format]
+    GP --> MC[Mark: Submitted · Date · All 4 Pages]
+    MC --> NH[Notify HR: PDS Submitted for Review]
+    NH --> PE([PDS Complete ✓])
+    VP --> PA{Action?}
+    PA -->|Edit| EP[Select Page to Edit 1-4]
+    EP --> SP
+    PA -->|Preview| PV[Full Screen Document Preview\nZoom In/Out Navigation]
+    PA -->|Download| DL[CS_Form_212_Name_Date.pdf]
+    PA -->|Print| PS[Print Dialog:\nLegal 8.5x13 · Margins: None · Scale: 100%]
+    PS --> PT[Send to Printer]
+    style CN fill:#00c471,stroke:#009954,color:#000
+    style P1 fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style P2 fill:#2d1f5e,stroke:#9b6dff,color:#fff
+    style P3 fill:#3d2a00,stroke:#f0a500,color:#fff
+    style P4 fill:#4a0f1a,stroke:#f04060,color:#fff
+    style SB fill:#164030,stroke:#00c471,color:#fff
+    style PE fill:#00c471,stroke:#009954,color:#000
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10. DATA FLOW -->
+<div class="section" id="tab-dataflow">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(0,196,113,.08)">🌐</div>
+    <div class="sec-meta">
+      <div class="sec-title">System-Wide Data Flow</div>
+      <div class="sec-desc">End-to-end architecture (left-to-right): Authentication → Role Assignment → Module Access → DB Reads/Writes → Notification loop back to User. Background processes cover Reports, PDF generation, Daily Backups, and Audit Logging.</div>
+      <div class="sec-tags"><span class="sec-tag">Left-to-Right LR</span><span class="sec-tag">5 Role Modules</span><span class="sec-tag">Central DB</span><span class="sec-tag">Notification Loop</span><span class="sec-tag">PDF Generation</span><span class="sec-tag">Daily Backup</span><span class="sec-tag">Audit Trail</span></div>
+    </div>
+  </div>
+  <div class="diagram-card">
+    <div class="diagram-toolbar">
+      <div class="diagram-toolbar-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+      <div class="diagram-toolbar-title">10 — System-Wide Data Flow</div>
+      <div class="diagram-zoom-btns">
+        <button class="zoom-btn" onclick="zoomD('dataflow',1.15)">+</button>
+        <button class="zoom-btn" onclick="zoomD('dataflow',.87)">−</button>
+        <button class="zoom-btn" onclick="resetZ('dataflow')">↺</button>
+      </div>
+    </div>
+    <div class="diagram-body" id="body-dataflow">
+      <div class="mermaid" id="diag-dataflow">
+flowchart LR
+    U([User]) -->|Login| AU[Authentication System\nEmail + Password + 2FA]
+    AU -->|Verify| DB[(Central Database)]
+    DB -->|User + Role| RC{Role Assignment}
+    RC -->|Admin| AM[Admin Module]
+    RC -->|Employee| EM[Employee Module]
+    RC -->|Dept Head| DM[Dept Head Module]
+    RC -->|HRMO| HM[HRMO Module]
+    RC -->|Mayor| MM[Mayor Module]
+    AM --> AF[Manage Employees & Depts\nApprove Leaves Step 3\nManage Users · Upload Attendance\nAnnouncements · Calendar · Audit Logs]
+    EM --> EF[View & Edit Profile\nSubmit Leave Requests\nView & Edit PDS\nAnnouncements · Calendar\nAttendance · DTR · Messages]
+    DM --> DF[All Employee Functions +\nApprove Leaves Step 1]
+    HM --> HF[All Employee Functions +\nApprove Leaves Step 2\nAll Employee Records Access]
+    MM --> MF[Approve Leaves Step 4 Final\nView Reports & Analytics\nAll Employees Read-only\nPost Announcements]
+    AF --> WDB[Write to Database]
+    EF --> WDB
+    DF --> WDB
+    HF --> WDB
+    MF --> WDB
+    WDB --> DB
+    DB --> RDB[Read from Database]
+    RDB --> DI[Display to User Interface]
+    DI --> NS[Notification System:\nEmail Alerts\nDashboard Updates\nReal-time Status]
+    NS --> U
+    AF -.->|Generate| RP[Reports & Analytics:\nEmployee Growth\nDept Distribution\nLeave & Attendance Stats]
+    EF -.->|Generate| PD[PDF Documents:\nApproved Leave Forms\nCS Form 212 PDS\nDTR Reports XLSX]
+    DB -.->|Daily| BK[Backup System:\nAutomated Daily Backups]
+    DB -.->|Log| AL[Audit Log:\nLogins · Failed Attempts\nBlocked IPs · Admin Actions]
+    style U fill:#00c471,stroke:#009954,color:#000
+    style DB fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style AM fill:#3d2a00,stroke:#f0a500,color:#fff
+    style EM fill:#164030,stroke:#00c471,color:#fff
+    style DM fill:#1e3a5f,stroke:#3b8eff,color:#fff
+    style HM fill:#2d1f5e,stroke:#9b6dff,color:#fff
+    style MM fill:#3d2a00,stroke:#f0a500,color:#fff
+    style RP fill:#2d1f5e,stroke:#9b6dff,color:#fff
+    style PD fill:#4a0f1a,stroke:#f04060,color:#fff
+    style AL fill:#4a0f1a,stroke:#f04060,color:#fff
+    style BK fill:#1e2a1a,stroke:#4ade80,color:#4ade80
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div style="margin-bottom:.3rem;font-weight:600;color:var(--muted2)">Ayungon HRMS — System Documentation</div>
+  Municipality of Ayungon, Negros Oriental &nbsp;·&nbsp; 10 Flowcharts &nbsp;·&nbsp; 5 User Roles &nbsp;·&nbsp; 4-Step Leave Approval &nbsp;·&nbsp; CS Form No. 212 PDS
+</footer>
+
+<script>
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#111d2b',
+    primaryTextColor: '#e8edf2',
+    primaryBorderColor: '#1e3350',
+    lineColor: '#3a5070',
+    secondaryColor: '#0d1520',
+    tertiaryColor: '#111d2b',
+    background: '#080e14',
+    mainBkg: '#111d2b',
+    clusterBkg: '#0d1520',
+    titleColor: '#e8edf2',
+    edgeLabelBackground: '#111d2b',
+    fontFamily: 'DM Sans, sans-serif',
+    fontSize: '13px',
+  },
+  flowchart: { htmlLabels: true, curve: 'basis', padding: 18 }
+});
+
+const rendered = new Set();
+
+window.addEventListener('load', () => {
+  const first = document.querySelector('#tab-auth .mermaid');
+  if (first) { mermaid.run({ nodes: [first] }); rendered.add('auth'); }
+});
+
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelector('[data-tab="' + name + '"]').classList.add('active');
+  if (!rendered.has(name)) {
+    rendered.add(name);
+    const node = document.querySelector('#tab-' + name + ' .mermaid');
+    if (node) mermaid.run({ nodes: [node] });
+  }
+}
+
+const zoomState = {};
+function zoomD(id, f) {
+  if (!zoomState[id]) zoomState[id] = 1;
+  zoomState[id] = Math.min(Math.max(zoomState[id] * f, 0.25), 5);
+  const s = document.querySelector('#diag-' + id + ' svg');
+  if (s) s.style.transform = 'scale(' + zoomState[id] + ')';
+}
+function resetZ(id) {
+  zoomState[id] = 1;
+  const s = document.querySelector('#diag-' + id + ' svg');
+  if (s) s.style.transform = 'scale(1)';
+}
+
+// Pan / drag on diagram bodies
+document.querySelectorAll('.diagram-body').forEach(el => {
+  let down = false, sx, sy, sl, st;
+  el.addEventListener('mousedown', e => { down=true; sx=e.pageX-el.offsetLeft; sy=e.pageY-el.offsetTop; sl=el.scrollLeft; st=el.scrollTop; });
+  el.addEventListener('mouseleave', () => down=false);
+  el.addEventListener('mouseup', () => down=false);
+  el.addEventListener('mousemove', e => {
+    if (!down) return;
+    e.preventDefault();
+    el.scrollLeft = sl - (e.pageX - el.offsetLeft - sx);
+    el.scrollTop  = st - (e.pageY - el.offsetTop  - sy);
+  });
+});
+</script>
+</body>
+</html>
