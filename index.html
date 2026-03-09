@@ -10,7 +10,6 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;font-family:'DM Sans',sans-serif;background:#060c12;color:#dde6ef;overflow:hidden}
 
-/* HEADER */
 .hdr{background:linear-gradient(160deg,#071020,#050e15 60%,#071a0e);border-bottom:1px solid rgba(255,255,255,.07);padding:1.25rem 2rem;position:relative;overflow:hidden;flex-shrink:0}
 .hdr-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:300px;background:radial-gradient(ellipse,rgba(0,196,113,.1),transparent 65%);pointer-events:none}
 .hdr-inner{max-width:100%;position:relative;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
@@ -22,28 +21,26 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#060c12;color:
 .sp-n{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:900;color:#00c471;line-height:1}
 .sp-l{font-size:.58rem;color:#4a6480;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;margin-top:.15rem}
 
-/* LEGEND */
 .legend-bar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.05);padding:.5rem 2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;flex-shrink:0}
 .legend-bar span.lbl{font-size:.65rem;font-weight:700;color:#3d5570;text-transform:uppercase;letter-spacing:.07em}
 .li{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:#6a8aa5;white-space:nowrap}
 .ld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 
-/* TOOLBAR */
 .toolbar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.05);padding:.5rem 1.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;flex-shrink:0}
 .btn{display:inline-flex;align-items:center;gap:.35rem;padding:.38rem .8rem;border-radius:7px;border:1px solid rgba(255,255,255,.1);background:#0f1d2c;color:#8aa3b8;font-size:.76rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;user-select:none}
 .btn:hover{background:#1a2d42;color:#dde6ef;border-color:rgba(255,255,255,.2)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 .btn.green{border-color:rgba(0,196,113,.3);color:#00c471;background:rgba(0,196,113,.08)}
-.btn.green:hover{background:rgba(0,196,113,.16)}
+.btn.green:hover:not(:disabled){background:rgba(0,196,113,.16)}
 .btn.blue{border-color:rgba(59,142,255,.3);color:#3b8eff;background:rgba(59,142,255,.08)}
-.btn.blue:hover{background:rgba(59,142,255,.16)}
+.btn.blue:hover:not(:disabled){background:rgba(59,142,255,.16)}
 .btn.purple{border-color:rgba(155,109,255,.3);color:#9b6dff;background:rgba(155,109,255,.08)}
-.btn.purple:hover{background:rgba(155,109,255,.16)}
+.btn.purple:hover:not(:disabled){background:rgba(155,109,255,.16)}
 .btn.red{border-color:rgba(240,64,96,.3);color:#f04060;background:rgba(240,64,96,.08)}
-.btn.red:hover{background:rgba(240,64,96,.16)}
+.btn.red:hover:not(:disabled){background:rgba(240,64,96,.16)}
 .sep{width:1px;height:20px;background:rgba(255,255,255,.08);flex-shrink:0;margin:0 .15rem}
 .zoom-lbl{font-size:.72rem;color:#3d5570;min-width:42px;text-align:center;font-family:'Syne',sans-serif;font-weight:700}
 
-/* CANVAS */
 #canvasWrap{flex:1;overflow:hidden;position:relative;background:#060c12}
 #mainCanvas{width:100%;height:100%;overflow:auto;cursor:grab;user-select:none}
 #mainCanvas:active{cursor:grabbing}
@@ -58,13 +55,13 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#060c12;color:
 #fsOverlay.open{display:flex}
 #fsToolbar{background:#080e14;border-bottom:1px solid rgba(255,255,255,.07);padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;flex-shrink:0}
 #fsTitle{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#5a7085}
-#fsCanvas{flex:1;overflow:auto;cursor:grab;user-select:none;padding:40px}
+#fsCanvas{flex:1;overflow:auto;cursor:grab;user-select:none;padding:40px;position:relative}
 #fsCanvas:active{cursor:grabbing}
 #fsCanvas::-webkit-scrollbar{width:6px;height:6px}
 #fsCanvas::-webkit-scrollbar-track{background:transparent}
 #fsCanvas::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
-#fsInner{display:inline-block;transform-origin:0 0}
-#fsInner svg{display:block;max-width:none !important}
+/* FIX: Use a wrapper div that transforms, not the SVG itself */
+#fsInner{display:inline-block;transform-origin:top left}
 
 /* LOADING */
 #loadingMsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:#060c12;z-index:10}
@@ -76,11 +73,15 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#060c12;color:
 #toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(60px);background:#0f1d2c;border:1px solid rgba(0,196,113,.3);color:#00c471;padding:.55rem 1.25rem;border-radius:999px;font-size:.8rem;font-weight:600;opacity:0;transition:all .3s;z-index:99999;white-space:nowrap;pointer-events:none}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* PAGE LAYOUT */
+/* PROGRESS BAR for download */
+#progressBar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00c471,#00c8e0);width:0;transition:width .3s;z-index:99999;pointer-events:none}
+
 body{display:flex;flex-direction:column}
 </style>
 </head>
 <body>
+
+<div id="progressBar"></div>
 
 <!-- HEADER -->
 <header class="hdr">
@@ -121,8 +122,8 @@ body{display:flex;flex-direction:column}
   <span class="zoom-lbl" id="zoomLabel">100%</span>
   <div class="sep"></div>
   <button class="btn blue" onclick="openFullscreen()">⛶ Fullscreen</button>
-  <button class="btn green" onclick="doDownloadPNG()">⬇ Download PNG</button>
-  <button class="btn purple" onclick="doDownloadSVG()">⬇ Download SVG</button>
+  <button class="btn green" id="btnJPG" onclick="doDownloadJPG()">⬇ Download JPG</button>
+  <button class="btn purple" id="btnSVG" onclick="doDownloadSVG()">⬇ Download SVG</button>
 </div>
 
 <!-- CANVAS -->
@@ -223,18 +224,11 @@ DH_DASH --> DH_NAV{Dept Head Navigation}
 DH_NAV -->|Leave Approval Queue| DH_QUEUE[Leave Approval Queue\nStep 1: Recommendation\nFilter: Own Dept · Pending Only]
 DH_NAV -->|Own Leave/Profile/PDS/Attendance| DH_EMP_FEAT[Same as Employee Features]
 
-ROLE_CHK -->|HRMO| HRMO_DASH[🏥 HRMO DASHBOARD\nAll Employee Features + Leave Approval\nAll Records Access]
-HRMO_DASH --> HRMO_NAV{HRMO Navigation}
-HRMO_NAV -->|Leave Approval Queue| HRMO_QUEUE[Leave Approval Queue\nStep 2: Review\nFilter: Dept Head Approved only]
-HRMO_NAV -->|Employee Records| HRMO_RECORDS[All Employee Records\nRead-Only Access]
-HRMO_NAV -->|Own Leave/Profile/PDS/Attendance| HRMO_EMP_FEAT[Same as Employee Features]
+ROLE_CHK -->|HRMO| HRMO_DASH[🏥 HRMO DASHBOARD\nLeave Approval — Step 2 Review]
+HRMO_DASH --> HRMO_QUEUE[Leave Approval Queue\nStep 2: Review & Approve\nFilter: Dept Head Approved only\nView PDF · Approve · Reject · Return to Dept]
 
-ROLE_CHK -->|Mayor| MAYOR_DASH[👔 MAYOR DASHBOARD\nHigh-level Overview · Final Authority]
-MAYOR_DASH --> MAYOR_NAV{Mayor Navigation}
-MAYOR_NAV -->|Leave Approval Queue| MAYOR_QUEUE[Leave Approval Queue\nStep 4: Final Approval\nFilter: Admin Approved only]
-MAYOR_NAV -->|Reports| MAYOR_RPT[Leave Analytics · Dept Stats\nAttendance Summary]
-MAYOR_NAV -->|All Employees| MAYOR_EMP[All Employees — Read-only]
-MAYOR_NAV -->|Announcements| MAYOR_ANN[View & Post Announcements]
+ROLE_CHK -->|Mayor| MAYOR_DASH[👔 MAYOR DASHBOARD\nLeave Approval — Final Authority]
+MAYOR_DASH --> MAYOR_QUEUE[Leave Approval Queue\nStep 4: Final Approval\nFilter: Admin Approved only\nView Full Trail · Final Approve · Reject · Return to Admin]
 
 SUBMIT_LEAVE --> CTRL_NUM[Generate Control Number\ne.g. LV-2026-0009\nSave to Database · Notify Dept Head]
 CTRL_NUM --> STEP_1[━━━ STEP 1 ━━━\n🏢 DEPT HEAD REVIEW]
@@ -349,7 +343,7 @@ style LOGIN_ERR fill:#3a0a14,stroke:#f04060,color:#ffb0b8
       <button class="btn" onclick="fsFit()">⊞ Fit</button>
       <span class="zoom-lbl" id="fsZoomLabel">100%</span>
       <div class="sep"></div>
-      <button class="btn green" onclick="doDownloadPNG()">⬇ PNG</button>
+      <button class="btn green" onclick="doDownloadJPG()">⬇ JPG</button>
       <button class="btn purple" onclick="doDownloadSVG()">⬇ SVG</button>
       <button class="btn red" onclick="closeFullscreen()">✕ Close</button>
     </div>
@@ -392,6 +386,7 @@ mermaid.initialize({
 // ═══════════════════════════════════════════════════════
 var scale = 1.0;
 var fsScale = 1.0;
+var diagramReady = false;
 
 // ═══════════════════════════════════════════════════════
 // RENDER
@@ -400,6 +395,7 @@ window.addEventListener('load', function() {
   var el = document.getElementById('mainDiagram');
   mermaid.run({ nodes: [el] }).then(function() {
     document.getElementById('loadingMsg').style.display = 'none';
+    diagramReady = true;
     setTimeout(doFitView, 300);
   }).catch(function(e) {
     document.getElementById('loadingMsg').innerHTML = '<p style="color:#f04060">Render error. Please reload.</p>';
@@ -408,7 +404,7 @@ window.addEventListener('load', function() {
 });
 
 // ═══════════════════════════════════════════════════════
-// ZOOM HELPERS
+// ZOOM HELPERS — MAIN
 // ═══════════════════════════════════════════════════════
 function setScale(s) {
   scale = Math.min(Math.max(s, 0.05), 5);
@@ -416,54 +412,67 @@ function setScale(s) {
   document.getElementById('zoomLabel').textContent = Math.round(scale * 100) + '%';
 }
 
-function doZoom(factor) {
-  setScale(scale * factor);
-}
+function doZoom(factor) { setScale(scale * factor); }
 
 function doReset() {
   setScale(1.0);
   var c = document.getElementById('mainCanvas');
-  c.scrollLeft = 0;
-  c.scrollTop = 0;
+  c.scrollLeft = 0; c.scrollTop = 0;
 }
 
 function doFitView() {
   var c = document.getElementById('mainCanvas');
-  var inner = document.getElementById('canvasInner');
-  var svg = inner.querySelector('svg');
+  var svg = document.querySelector('#mainDiagram svg');
   if (!svg) return;
-  // get natural size at scale=1
-  var prevScale = scale;
-  setScale(1);
-  var svgW = svg.getBoundingClientRect().width;
-  var svgH = svg.getBoundingClientRect().height;
+  var prevT = document.getElementById('canvasInner').style.transform;
+  document.getElementById('canvasInner').style.transform = 'scale(1)';
+  var svgW = svg.scrollWidth;
+  var svgH = svg.scrollHeight;
+  document.getElementById('canvasInner').style.transform = prevT;
   var cW = c.clientWidth  - 80;
   var cH = c.clientHeight - 80;
-  var fit = Math.min(cW / svgW, cH / svgH);
-  setScale(fit);
-  c.scrollLeft = 0;
-  c.scrollTop = 0;
+  var fit = Math.min(cW / svgW, cH / svgH, 1);
+  setScale(fit > 0 ? fit : 0.3);
+  c.scrollLeft = 0; c.scrollTop = 0;
 }
 
 // ═══════════════════════════════════════════════════════
-// FULLSCREEN
+// FULLSCREEN — FIXED
 // ═══════════════════════════════════════════════════════
 function openFullscreen() {
+  if (!diagramReady) { showToast('Diagram not ready yet, please wait.'); return; }
+
   var origSvg = document.querySelector('#mainDiagram svg');
   if (!origSvg) { showToast('Diagram not ready yet, please wait.'); return; }
 
   var fsInner = document.getElementById('fsInner');
   fsInner.innerHTML = '';
+  fsInner.style.transform = '';
+
+  // Clone SVG and ensure it renders correctly
   var clone = origSvg.cloneNode(true);
   clone.style.display = 'block';
   clone.style.maxWidth = 'none';
-  fsInner.appendChild(clone);
+  clone.removeAttribute('width');
+  clone.removeAttribute('height');
 
+  // Preserve viewBox so it sizes correctly
+  var vb = origSvg.getAttribute('viewBox');
+  if (!vb) {
+    var w = origSvg.getBoundingClientRect().width;
+    var h = origSvg.getBoundingClientRect().height;
+    clone.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  }
+  // Set explicit pixel size on clone equal to original
+  clone.style.width  = origSvg.scrollWidth  + 'px';
+  clone.style.height = origSvg.scrollHeight + 'px';
+
+  fsInner.appendChild(clone);
   document.getElementById('fsOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 
   fsScale = 1.0;
-  setTimeout(fsFit, 100);
+  setTimeout(fsFit, 150);
 }
 
 function closeFullscreen() {
@@ -473,11 +482,8 @@ function closeFullscreen() {
 
 function applyFsScale() {
   fsScale = Math.min(Math.max(fsScale, 0.05), 5);
-  var el = document.querySelector('#fsInner svg');
-  if (el) {
-    el.style.transform = 'scale(' + fsScale + ')';
-    el.style.transformOrigin = '0 0';
-  }
+  document.getElementById('fsInner').style.transform = 'scale(' + fsScale + ')';
+  document.getElementById('fsInner').style.transformOrigin = 'top left';
   document.getElementById('fsZoomLabel').textContent = Math.round(fsScale * 100) + '%';
 }
 
@@ -487,21 +493,21 @@ function fsDoZoom(factor) {
 }
 
 function fsFit() {
-  var c = document.getElementById('fsCanvas');
-  var el = document.querySelector('#fsInner svg');
-  if (!el) return;
-  // measure at scale 1
-  var prev = fsScale;
-  fsScale = 1;
-  applyFsScale();
-  var svgW = el.getBoundingClientRect().width;
-  var svgH = el.getBoundingClientRect().height;
+  var c   = document.getElementById('fsCanvas');
+  var svg = document.querySelector('#fsInner svg');
+  if (!svg) return;
+
+  // Reset scale to measure true size
+  document.getElementById('fsInner').style.transform = 'scale(1)';
+  var svgW = svg.scrollWidth  || svg.getBoundingClientRect().width;
+  var svgH = svg.scrollHeight || svg.getBoundingClientRect().height;
+
   var cW = c.clientWidth  - 80;
   var cH = c.clientHeight - 80;
   fsScale = Math.min(cW / svgW, cH / svgH);
+  if (!isFinite(fsScale) || fsScale <= 0) fsScale = 0.3;
   applyFsScale();
-  c.scrollLeft = 0;
-  c.scrollTop = 0;
+  c.scrollLeft = 0; c.scrollTop = 0;
 }
 
 // Close on Escape
@@ -516,18 +522,17 @@ document.addEventListener('keydown', function(e) {
   var c = document.getElementById('mainCanvas');
   var down = false, sx, sy, sl, st;
   c.addEventListener('mousedown', function(e) {
+    if (e.button !== 0) return;
     down = true; sx = e.clientX; sy = e.clientY;
     sl = c.scrollLeft; st = c.scrollTop;
     c.style.cursor = 'grabbing';
   });
-  c.addEventListener('mousemove', function(e) {
+  document.addEventListener('mousemove', function(e) {
     if (!down) return;
     c.scrollLeft = sl - (e.clientX - sx);
     c.scrollTop  = st - (e.clientY - sy);
   });
-  c.addEventListener('mouseup',    function() { down = false; c.style.cursor = 'grab'; });
-  c.addEventListener('mouseleave', function() { down = false; c.style.cursor = 'grab'; });
-  // Ctrl+wheel zoom
+  document.addEventListener('mouseup', function() { down = false; c.style.cursor = 'grab'; });
   c.addEventListener('wheel', function(e) {
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
@@ -543,17 +548,17 @@ document.addEventListener('keydown', function(e) {
   var c = document.getElementById('fsCanvas');
   var down = false, sx, sy, sl, st;
   c.addEventListener('mousedown', function(e) {
+    if (e.button !== 0) return;
     down = true; sx = e.clientX; sy = e.clientY;
     sl = c.scrollLeft; st = c.scrollTop;
     c.style.cursor = 'grabbing';
   });
-  c.addEventListener('mousemove', function(e) {
+  document.addEventListener('mousemove', function(e) {
     if (!down) return;
     c.scrollLeft = sl - (e.clientX - sx);
     c.scrollTop  = st - (e.clientY - sy);
   });
-  c.addEventListener('mouseup',    function() { down = false; c.style.cursor = 'grab'; });
-  c.addEventListener('mouseleave', function() { down = false; c.style.cursor = 'grab'; });
+  document.addEventListener('mouseup', function() { down = false; c.style.cursor = 'grab'; });
   c.addEventListener('wheel', function(e) {
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
@@ -563,80 +568,177 @@ document.addEventListener('keydown', function(e) {
 })();
 
 // ═══════════════════════════════════════════════════════
-// DOWNLOAD PNG
+// HELPER: Get true full SVG dimensions from viewBox or bbox
 // ═══════════════════════════════════════════════════════
-function doDownloadPNG() {
-  var origSvg = document.querySelector('#mainDiagram svg');
-  if (!origSvg) { showToast('Diagram not ready yet.'); return; }
-
-  showToast('Preparing PNG download…');
-
-  // Serialize SVG with background
-  var clone = origSvg.cloneNode(true);
-  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  var bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  bg.setAttribute('width', '100%');
-  bg.setAttribute('height', '100%');
-  bg.setAttribute('fill', '#060c12');
-  clone.insertBefore(bg, clone.firstChild);
-
-  var svgStr = new XMLSerializer().serializeToString(clone);
-  var svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-  var url = URL.createObjectURL(svgBlob);
-
-  var img = new Image();
-  img.onload = function() {
-    var px = 2; // 2x retina
-    var cvs = document.createElement('canvas');
-    cvs.width  = img.naturalWidth  * px;
-    cvs.height = img.naturalHeight * px;
-    var ctx = cvs.getContext('2d');
-    ctx.fillStyle = '#060c12';
-    ctx.fillRect(0, 0, cvs.width, cvs.height);
-    ctx.scale(px, px);
-    ctx.drawImage(img, 0, 0);
-    URL.revokeObjectURL(url);
-    var a = document.createElement('a');
-    a.download = 'Ayungon_HRMS_Flowchart.png';
-    a.href = cvs.toDataURL('image/png');
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    showToast('PNG downloaded!');
-  };
-  img.onerror = function() {
-    URL.revokeObjectURL(url);
-    showToast('PNG export failed — try SVG instead.');
-  };
-  img.src = url;
+function getSVGFullDimensions(svg) {
+  // 1. Try viewBox — most reliable, mermaid always sets it
+  var vb = svg.getAttribute('viewBox');
+  if (vb) {
+    var parts = vb.trim().split(/[\s,]+/);
+    if (parts.length === 4) {
+      var vw = parseFloat(parts[2]);
+      var vh = parseFloat(parts[3]);
+      if (vw > 0 && vh > 0) return { w: vw, h: vh };
+    }
+  }
+  // 2. Try explicit width/height attributes
+  var aw = parseFloat(svg.getAttribute('width'));
+  var ah = parseFloat(svg.getAttribute('height'));
+  if (aw > 0 && ah > 0) return { w: aw, h: ah };
+  // 3. getBBox — gets actual content bounding box
+  try {
+    var bb = svg.getBBox();
+    if (bb.width > 0 && bb.height > 0) return { w: bb.width + bb.x * 2, h: bb.height + bb.y * 2 };
+  } catch(e) {}
+  // 4. Last resort: scroll dimensions
+  return { w: svg.scrollWidth || 2000, h: svg.scrollHeight || 4000 };
 }
 
 // ═══════════════════════════════════════════════════════
-// DOWNLOAD SVG
+// HELPER: Get clean SVG string with background + correct dims
 // ═══════════════════════════════════════════════════════
-function doDownloadSVG() {
+function getCleanSVGString() {
   var origSvg = document.querySelector('#mainDiagram svg');
-  if (!origSvg) { showToast('Diagram not ready yet.'); return; }
+  if (!origSvg) return null;
+
+  var dims = getSVGFullDimensions(origSvg);
+  var w = dims.w, h = dims.h;
 
   var clone = origSvg.cloneNode(true);
   clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
+  // Set explicit pixel dimensions matching viewBox
+  clone.setAttribute('width',  w);
+  clone.setAttribute('height', h);
+
+  // Ensure viewBox is set
+  if (!clone.getAttribute('viewBox')) {
+    clone.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  }
+
+  // Add background rect as very first child
   var bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  bg.setAttribute('width', '100%');
-  bg.setAttribute('height', '100%');
+  bg.setAttribute('x', '0');
+  bg.setAttribute('y', '0');
+  bg.setAttribute('width',  w);
+  bg.setAttribute('height', h);
   bg.setAttribute('fill', '#060c12');
   clone.insertBefore(bg, clone.firstChild);
 
-  var svgStr = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
-  var blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-  var url = URL.createObjectURL(blob);
+  return { str: new XMLSerializer().serializeToString(clone), w: w, h: h };
+}
+
+// ═══════════════════════════════════════════════════════
+// DOWNLOAD SVG — FIXED
+// ═══════════════════════════════════════════════════════
+function doDownloadSVG() {
+  if (!diagramReady) { showToast('Diagram not ready yet.'); return; }
+  var result = getCleanSVGString();
+  if (!result) { showToast('Could not find diagram.'); return; }
+
+  var str = '<?xml version="1.0" encoding="UTF-8"?>\n' + result.str;
+  var blob = new Blob([str], { type: 'image/svg+xml;charset=utf-8' });
+  triggerDownload(URL.createObjectURL(blob), 'Ayungon_HRMS_Flowchart.svg');
+  showToast('✅ SVG downloaded!');
+}
+
+// ═══════════════════════════════════════════════════════
+// DOWNLOAD JPG — full resolution, full content, high quality
+// ═══════════════════════════════════════════════════════
+function doDownloadJPG() {
+  if (!diagramReady) { showToast('Diagram not ready yet.'); return; }
+
+  var origSvg = document.querySelector('#mainDiagram svg');
+  if (!origSvg) { showToast('Diagram not found.'); return; }
+
+  showToast('Preparing JPG — may take a moment…');
+  setProgress(10);
+
+  var result = getCleanSVGString();
+  if (!result) { showToast('Could not read diagram.'); setProgress(0); return; }
+
+  var svgStr = result.str;
+  var w = result.w;
+  var h = result.h;
+
+  // 3× pixel density = sharp/print quality; clamp to browser max canvas size
+  var PX = 3;
+  var maxDim = 16000;
+  if (w * PX > maxDim || h * PX > maxDim) {
+    PX = Math.floor(Math.min(maxDim / w, maxDim / h));
+    if (PX < 1) PX = 1;
+  }
+
+  setProgress(25);
+
+  var b64;
+  try { b64 = btoa(unescape(encodeURIComponent(svgStr))); }
+  catch(e) { showToast('❌ Encoding failed. Downloading SVG instead.'); doDownloadSVG(); setProgress(0); return; }
+
+  var dataURI = 'data:image/svg+xml;base64,' + b64;
+
+  function renderToJPG(src, onFail) {
+    var img = new Image();
+    img.onload = function() {
+      setProgress(70);
+      try {
+        var cvs = document.createElement('canvas');
+        cvs.width  = Math.round(w * PX);
+        cvs.height = Math.round(h * PX);
+        var ctx = cvs.getContext('2d');
+        ctx.fillStyle = '#060c12';
+        ctx.fillRect(0, 0, cvs.width, cvs.height);
+        ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
+        setProgress(88);
+        cvs.toBlob(function(blob) {
+          if (!blob) { onFail('toBlob null'); return; }
+          triggerDownload(URL.createObjectURL(blob), 'Ayungon_HRMS_Flowchart.jpg');
+          setProgress(100);
+          showToast('✅ JPG downloaded! (' + cvs.width + ' × ' + cvs.height + 'px)');
+          setTimeout(function(){ setProgress(0); }, 1000);
+        }, 'image/jpeg', 0.97);
+      } catch(err) { onFail(err); }
+    };
+    img.onerror = function() { onFail('load error'); };
+    img.src = src;
+  }
+
+  renderToJPG(dataURI, function(r1) {
+    console.warn('base64 failed:', r1, '— trying blob URL');
+    setProgress(45);
+    try {
+      var blobSvg = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+      var blobURL = URL.createObjectURL(blobSvg);
+      renderToJPG(blobURL, function(r2) {
+        URL.revokeObjectURL(blobURL);
+        console.warn('blob URL also failed:', r2);
+        showToast('⚠️ JPG render failed. Downloading SVG instead.');
+        doDownloadSVG(); setProgress(0);
+      });
+      setTimeout(function(){ URL.revokeObjectURL(blobURL); }, 8000);
+    } catch(e) {
+      showToast('⚠️ JPG failed. Downloading SVG instead.');
+      doDownloadSVG(); setProgress(0);
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════
+function triggerDownload(url, filename) {
   var a = document.createElement('a');
-  a.download = 'Ayungon_HRMS_Flowchart.svg';
   a.href = url;
+  a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
-  showToast('SVG downloaded!');
+  setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
+}
+
+function setProgress(pct) {
+  document.getElementById('progressBar').style.width = pct + '%';
 }
 
 // ═══════════════════════════════════════════════════════
@@ -648,7 +750,7 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2500);
+  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3000);
 }
 </script>
 </body>
